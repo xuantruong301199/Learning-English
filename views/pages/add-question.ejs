@@ -1,0 +1,516 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Luyện Thi Trắc Nghiệm - Phú Yên</title>
+	<meta name="description" content="">
+	<meta name="keywords" content="">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<meta name="format-detection" content="telephone=no">
+
+	<link rel="apple-touch-icon-precomposed" sizes="144x144" href="../dashboard/images/favicon/apple-touch-icon-144x144.png" />
+	<link rel="icon" type="image/png" href="../lttnpy_core/images/LOGO_LTTNPY.png" sizes="16x16" />
+	<link rel="icon" type="image/png" href="../lttnpy_core/images/LOGO_LTTNPY.png" sizes="32x32" />
+	<link rel="icon" type="image/png" href="../lttnpy_core/images/LOGO_LTTNPY.png" sizes="128x128" />
+	<link rel="stylesheet" href="../dashboard/assets/css/main.css">
+
+	<link rel="stylesheet" href="../lttnpy_core/css/fontawesome-all.min.css"/>
+	<link rel="stylesheet" href="../lttnpy_core/slick/slick.css">
+	<link rel="stylesheet" href="../lttnpy_core/slick/slick-theme.css">
+    <link rel="stylesheet" href="../lttnpy_core/css/select2.min.css"/>
+    <link rel="stylesheet" href="../lttnpy_core/css/quill.snow.css"/>
+	<link rel="stylesheet" href="../lttnpy_core/toastr/toastr.min.css"/>
+    <link rel="stylesheet" href="../lttnpy_core/css/fullcalendar.print.min.css" media='print'/>
+    <link rel="stylesheet" href="../lttnpy_core/css/jquery-ui-full.css"/>
+    <link rel="stylesheet" href="../lttnpy_core/css/jquery.timepicker.min.css"/>
+	
+	<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:700" rel="stylesheet">
+	<!--
+	<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+	-->
+</head>
+<body>
+	<div class="wrapper theme-inverse">
+		<div class="loader text-primary">
+			<i class="i-spinner loading"></i>
+		</div>
+		<%- include('../dashboard/sidebar') %>
+		<header class="header">
+			<ul class="header-nav">
+				<li>
+					<button id="js-toggle-sidebar" class="header-nav-item">
+						<i class="fas fa-bars"></i>
+					</button>
+				</li>
+			</ul>
+			<ul class="header-nav d-none d-sm-flex">
+				<li>
+					<a href="/" class="header-nav-item">Trang chủ</a>
+					
+				</li>
+				<li>
+					<a href="#" data-dropdown class="header-nav-item">Liên hệ</a>
+					<ul class="dropdown-menu">
+						<li><a class="dropdown-item" target="_blank" href="https://www.facebook.com/TOTHANHDAT.TTD">Facebook</a></li>
+						<li><a class="dropdown-item" target="_blank" href="https://www.messenger.com/t/TOTHANHDAT.TTD">Messenger</a></li>
+						<li><a class="dropdown-item" href="">Email: lttn.py@gmail.com</a></li>
+					</ul>
+				</li>
+			</ul>
+			
+			<ul class="header-nav pull-right">
+				<li>
+					<a href="#" data-dropdown class="header-nav-item">
+						<i class="far fa-envelope"></i>
+						<span class="badge badge-pill badge-success">2</span>
+					</a>
+					<ul class="dropdown-menu px-20 py-10">
+						<li class="message">
+							<div class="avatar avatar-sm">
+								<img src="../dashboard/images/avatar-3.jpg" alt="">
+							</div>
+							<div class="message-content">
+								<div class="message-bubble">
+									<p>Hello, John!</p>
+								</div>
+								<small class="text-secondary text-sm">Today, 10:31</small>
+							</div>
+							<div class="message-actions">
+								<button><i class="far fa-trash-alt"></i></button>
+								<button><i class="far fa-flag"></i></button>
+							</div>
+						</li>
+						<li class="message">
+							<div class="avatar avatar-sm">
+								<img src="../dashboard/images/avatar-3.jpg" alt="">
+							</div>
+							<div class="message-content">
+								<div class="message-bubble">
+									<p>What about our project?</p>
+								</div>
+								<small class="text-secondary text-sm">Today, 10:32</small>
+							</div>
+							<div class="message-actions">
+								<button><i class="far fa-trash-alt"></i></button>
+								<button><i class="far fa-flag"></i></button>
+							</div>
+						</li>
+					</ul>
+				</li>
+				<li>
+					<a href="#" data-dropdown class="header-nav-item">
+						<i class="far fa-bell"></i>
+						<span class="badge badge-pill badge-primary">3</span>
+					</a>
+					<ul class="dropdown-menu px-20 py-10">
+						<li class="event-column event-column-success">
+							<div class="event-content">
+								<small class="text-secondary"><i class="far fa-envelope"></i> From example@gmail.com</small>
+								<p><a href="#">Alex White</a> sent you an email.</p>
+							</div>
+							<small class="text-secondary pull-right">1 hr.</small>
+						</li>
+						<li class="event-column event-column-primary">
+							<div class="event-content">
+								<small class="text-secondary"><i class="fas fa-thumbtack"></i> New task</small>
+								<p><b>To <a href="#">John Doe</a>: new API methods.</b></p>
+								<p class="text-secondary text-sm">Implement new API methods for mobile app.</p>
+							</div>
+							<small class="text-secondary pull-right">7 min.</small>
+						</li>
+						<li class="event-column event-column-secondary">
+							<div class="event-content">
+								<small class="text-secondary"><i class="far fa-bell"></i> Notification</small>
+								<p><a href="#">Alex White</a> joined to project</p>
+							</div>
+							<small class="text-secondary pull-right">now</small>
+						</li>
+					</ul>
+				</li>
+				<li>
+					<a href="#" id="js-enter-fullscreen" class="header-nav-item">
+						<i class="fas fa-expand-arrows-alt"></i>
+					</a>
+				</li>
+				<li>
+					<a href="#" data-dropdown class="user-panel">
+						<div class="user-panel-image">
+							<div class="avatar avatar-sm">
+								<img src="../dashboard/images/avatar-0.jpg" alt="">
+							</div>
+						</div>
+						<div class="user-panel-info">
+							<small>Xin chào</small>
+							<p>Admin</p>
+						</div>
+					</a>
+					<ul class="dropdown-menu">
+						<li><a class="dropdown-item" href="page-profile.html"><i class="far fa-user"></i> Profile</a></li>
+						<li class="dropdown-divider"></li>
+						<li><a class="dropdown-item" href="/logout"><i class="fas fa-power-off"></i> Logout</a></li>
+					</ul>
+				</li>
+			</ul>
+		</header>
+		<main class="content">
+			<div class="container-fluid">
+				<div class="content-header content-header-scene">
+					<h1>LTTN Trang chủ <small>Đăng nhập lần cuối: 03:00 21, July</small></h1>
+				</div>
+<script src="https://cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>
+<main class="content">
+	<div class="container-fluid">
+		<div class="content-header">
+			<h1>Tạo câu hỏi</h1>
+			<nav aria-label="breadcrumb">
+				<ol class="breadcrumb">
+					<li class="breadcrumb-item"><a href="dashboard-1.html">Chức năng</a></li>
+					<li class="breadcrumb-item active">Bộ đề</li>
+				</ol>
+			</nav>
+		</div>
+
+		<div class="row">
+			<div class="col-lg-9">
+				<form class="box needs-validation" novalidate id="formCreateQuestion"
+					enctype="multipart/form-data" action="/question/add-question" method="POST">
+					<div class="box-header">
+						<h3>Tạo câu hỏi <span class="numberCountQuestion">1</span></h3>
+					</div>
+					<div class="box-body">
+						<div class="form-group row">
+							<label for="jsValidationRequired" class="form-label col-2" >Bộ đề</label>
+							<div class="col-9">
+								<select id="examID" required class="form-control onChangeExam" >
+									<option value>Chọn bộ đề</option>
+								
+									
+
+									<option value="5ee5f79dfa430106f4296452">Đề hóa học hữu cơ nâng cao cho học sinh lớp 12 [ Hóa học
+                                    
+                                    
+											
+										
+											
+										
+											
+										
+											
+										
+											
+												<td>12</td>
+											
+										]
+                                    </option>
+									
+								
+								</select>
+							</div>
+						</div>
+						<div class="form-group row">
+							<label class="form-label col-2">Câu hỏi</label>
+							<div class="col-9">
+								<textarea name="editor1" id="editor1"></textarea>
+							</div>
+						</div>
+                        <div class="form-group row">
+							<label class="form-label col-2">Tải hình ảnh</label>
+                            <div class="col-9">
+							    <input id="image_question" type="file" name="image" class="form-control">
+                            </div>
+						</div>
+                        <div class="form-group row">
+							<label class="form-label col-2" >Đáp án</label>
+                            <div class="form-group">
+                                <label class="form-radio-custom">
+                                    <input checked name="custom_radio" class="selection" value="1" type="radio">
+                                    <span class="form-label"></span>
+                                </label>
+						    </div>
+							<div class="col-9">
+								<input id="answerA" type="text" class="form-control" autocomplete="off" placeholder='A.'>
+							</div>
+						</div>
+                        
+                        <div class="form-group row">
+							<label class="form-label col-2" ></label>
+                            <div class="form-group">
+                                <label class="form-radio-custom">
+                                    <input checked name="custom_radio" class="selection" value="2" type="radio">
+                                    <span class="form-label"></span>
+                                </label>
+						    </div>
+							<div class="col-9">
+								<input id="answerB" type="text" class="form-control" autocomplete="off" placeholder='B.'>
+							</div>
+						</div>
+                        <div class="form-group row">
+							<label class="form-label col-2" ></label>
+                            <div class="form-group">
+                                <label class="form-radio-custom">
+                                    <input checked name="custom_radio" class="selection" value="3" type="radio">
+                                    <span class="form-label"></span>
+                                </label>
+						    </div>
+							<div class="col-9">
+								<input id="answerC" type="text" class="form-control" autocomplete="off" placeholder='C.'>
+							</div>
+						</div>
+                        <div class="form-group row">
+							<label class="form-label col-2" ></label>
+                            <div class="form-group">
+                                <label class="form-radio-custom">
+                                    <input checked name="custom_radio" value="4" class="selection" type="radio">
+                                    <span class="form-label"></span>
+                                </label>
+						    </div>
+							<div class="col-9">
+								<input id="answerD" type="text" class="form-control" autocomplete="off" placeholder='D.'>
+							</div>
+						</div>
+					</div>
+					<div class="box-footer">
+						<button class="btn btn-primary pull-right btnCreateQuestion" type="submit">Tạo câu hỏi</button>
+					</div>
+				</form>
+			</div>
+			<div class="box col-lg-9">
+					<div class="box-header">
+						<h3 >Danh sách bộ đề</h3>
+					</div>
+					<div class="box-body">
+						<div class="table-responsive">
+							<table class="table table-noborder list-exam-temp">
+								<tbody>
+									<tr>
+										<th>STT</th>
+										<th>Câu hỏi</th>
+									</tr>
+									<tr>
+										<td>Câu 1</td>
+										<td>Cho dãy các chất sau: saccarozơ, glucozơ, fructozơ và axetilen. Số chất trong dãy có...</td>
+										<td>
+											<div class="user-panel-actions">
+												<a href=""></a>
+												<a href=""><i class="fas fa-pencil-alt btnEditQuestion" ></i></a>
+												<a href=""></a>
+												<a href=""><i class="fas fa-trash-alt btnRemoveQuestion"></i></a>
+											</div>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+					<div class="box-footer">
+						<button style="color:blue" target="_blank" class="hrefExam">Xem trước bộ đề</button>
+						<button class="btn btn-primary pull-right btnCompleteExam">Hoàn thành</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</main>
+<footer class="footer">
+			<p >LTTN.PY © 2020 Được phát triển bởi Tô Thành Đạt.</p>
+		</footer>
+	</div>
+
+	<script src="../dashboard/assets/js/app.js"></script>
+
+	<!-- <script src="https://cdn.ckeditor.com/4.10.1/standard/ckeditor.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js" ></script> -->
+	<script src="../lttnpy_core/scripts/jquery-3.2.1.min.js" type="text/javascript"></script>
+	<script src="../lttnpy_core/scripts/select2.min.js" type="text/javascript"></script>
+	<script src="../lttnpy_core/scripts/bootstrap.min.js" type="text/javascript"></script>
+	<script src="../lttnpy_core/slick/slick.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../lttnpy_core/scripts/caret.js" type="text/javascript"></script>
+	<script src="../lttnpy_core/scripts/emojiPicker.min.js"></script>
+	<script src="../lttnpy_core/scripts/main.js" type="text/javascript"></script>
+	<script src="../lttnpy_core/scripts/lodash.min.js" type="text/javascript"></script>
+	<script src="../lttnpy_core/scripts/moment.min.js" type="text/javascript"></script>
+	<script src="../lttnpy_core/scripts/moment-with-locales.min.js" type="text/javascript"></script>
+	<script src="../lttnpy_core/toastr/toastr.min.js" type="text/javascript"></script>
+	<script src="../lttnpy_core/scripts/quill.min.js"></script>
+	<script src="../lttnpy_core/scripts/fullcalendar.min.js" type="text/javascript"></script>
+	<script src="../lttnpy_core/scripts/jquery-ui-full.js" type="text/javascript"></script>
+	<script src="../lttnpy_core/scripts/jquery.timepicker.min.js" type="text/javascript"></script>
+	<script src="https://cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>
+
+	
+</body>
+</html>
+
+// <script>
+
+
+//     CKEDITOR.replace( 'editor1' );
+
+// 	//Tạo câu hỏi ---------------> 
+// 	$(document).on('click', '.btnCreateQuestion', function(e) {
+// 		e.preventDefault();
+
+// 		//Bộ đề
+//         let examID = $('#examID').val();
+
+// 		//Câu hỏi
+// 		let nameQuestion = CKEDITOR.instances.editor1.getData().trim(); 
+
+//         let answerA = $('#answerA').val();
+//         let answerB = $('#answerB').val();
+//         let answerC = $('#answerC').val();
+//         let answerD = $('#answerD').val();
+
+
+// 		let answer = [answerA, answerB, answerC, answerD]
+
+// 		console.log(answer)
+
+//         let correct = $("input[type='radio'].selection:checked").val();
+
+
+// 		let formData = new FormData();
+// 		let _imageDemo = $('#image_question')[0].files[0];
+// 		console.log({ _imageDemo })
+
+// 		if(_imageDemo){
+// 			formData.append('image', _imageDemo);
+// 		}
+
+// 		formData.append('nameQuestion', nameQuestion);
+// 		formData.append('answer', answer);
+// 		formData.append('correct', correct);
+// 		formData.append('examID', examID);
+
+// 		//Đáp án
+
+// 		//Đáp án đúng
+
+//         if  (nameQuestion.length < 1 && answerA.length < 1 || 
+//             nameQuestion.length < 1 && answerB.length < 1 ||
+// 			nameQuestion.length < 1 && answerC.length < 1 ||
+// 			nameQuestion.length < 1 && answerD.length < 1){
+//                 return toastr['warning']('Câu hỏi và đáp án không được để trống', 'Thông báo');
+                
+//         } if(!correct){
+//             return toastr['warning']('Bạn chưa chọn đáp án', 'Thông báo');
+
+//         } else{
+//             $.ajax({
+//                 url: `/question/add-question`,
+//                 method: 'POST',
+//                 data: formData,
+// 				enctype: 'multipart/form-data',
+// 				processData: false,
+//         		contentType: false,
+//                 success: resp => {
+
+// 					console.log({resp})
+
+//                     if(!resp.error){
+// 						 let numberCountAppend = 0;
+// 						$('.list-exam-temp').append(`
+// 							<tbody>
+// 								<tr>
+// 									<td>Câu <span class="number-of-questions">${numberCountAppend + 1}</span></td>
+// 									<td style="color:black">${nameQuestion}</td>
+// 									<td>
+// 										<div class="user-panel-actions">
+// 											<a href="#"></a>
+// 											<a href="#"><i class="fas fa-pencil-alt btnEditQuestion" ></i></a>
+// 											<a href="#"></a>
+// 											<a href="#"><i class="fas fa-trash-alt btnRemoveQuestion" _examID="${examID}" _questionID=${resp.data._id}></i></a>
+// 										</div>
+// 									</td>
+// 							</tbody>
+// 						</tr>`)
+						
+// 						//Tăng số câu hỏi 
+// 						let numberCountQuestion = $('.numberCountQuestion').text();
+// 						let formatNumberCountQuestion = parseInt(numberCountQuestion) + 1;
+// 						$('.numberCountQuestion').text(formatNumberCountQuestion);
+
+
+//                         toastr['success']('Thêm thành công', 'Thông báo');
+                        
+//                         $('#nameQuestion').val('')
+//                         $('#answerA').val('');
+//                         $('#answerB').val('');
+//                         $('#answerC').val('');
+//                         $('#answerD').val('');
+						
+//                         $('#image_question').val('');
+						
+
+//                     } else {
+
+//                         return toastr['error']('Thêm thất bại', 'Thông báo');
+//                     }
+//                 },
+
+//                 error: err => console.log({ err })
+//             });
+				
+//         }
+//     })
+
+// 	//Xóa câu hỏi --------------->
+// 	$(document).on('click', '.btnRemoveQuestion', function(e) {
+// 		e.preventDefault();
+// 		let examID = $(this).attr('_examID');
+// 		let questionID = $(this).attr('_questionID');
+// 		console.log({ examID, questionID})
+
+// 		if (window.confirm('Bạn có chắc chắn xóa không?')) {
+//             $.ajax({
+// 				url: `/question/remove-question/${questionID}?examID=${examID}`,
+// 				method: 'GET',
+// 				success: resp => {
+
+// 					console.log({ resp })
+
+// 					if(!resp.error){
+
+// 						$(this).closest("tr").remove();
+// 						return toastr['success']('Xóa thành công', 'Thông báo');
+
+// 					}else{
+
+// 						return toastr['error']('Xóa thất bại', 'Thông báo');
+// 					}
+// 				},
+// 				error: err => console.log({ err })
+// 			});
+//         }
+//     })
+
+// 	//Lấy ID truyền vào button xem trước --------------->
+// 	$(document).on('change', '.onChangeExam', function() {
+// 		let examID = $('#examID').val();
+// 		let hrefExam = $('.hrefExam').attr('_examID', examID)
+// 	})
+
+// 	//Sự kiện chuyển đến trang trắc nghiệm --------------->
+// 	$(document).on('click', '.hrefExam', function(e) {
+// 		e.preventDefault();
+// 		let examID = $(this).attr('_examID');
+
+// 		if(!examID){
+
+// 			return toastr['warning']('Bạn chưa chọn bộ đề muốn xem', 'Thông báo');
+
+// 		} else {
+			
+// 			let _urlTemp = `/test-exam?examID=${examID}`
+// 			window.open(_urlTemp, '_blank');
+
+// 		}
+// 	})
+
+// </script>

@@ -1,0 +1,424 @@
+
+<%- include ('../partials/header') %>
+
+<style>
+
+</style>
+
+<div class="container-fluid" id="body">
+    <nav class="third-nav">
+        <div class="row">
+            <div class="bg">
+                <div class="clearfix">
+                    <div class="col-xs-24 col-sm-18 col-md-18">
+                        <div class="breadcrumbs-wrap">
+                            <div class="display">
+                                <a class="show-subs-breadcrumbs hidden" href="#" onclick="showSubBreadcrumbs(this, event);"><em class="fa fa-lg fa-angle-right"></em></a>
+                                <ul class="breadcrumbs list-none"></ul>
+                            </div>
+                            <ul class="subs-breadcrumbs"></ul>
+                            <ul class="temp-breadcrumbs hidden">
+                                <li><a href="/" title="Trang nhất"><span>Trang nhất</span></a></li>
+                            <li><a href="" title="Trắc nghiệm"><span class="txt" itemprop="title">Trắc nghiệm</span></a></li>
+                            <li><a href="/list-of-subjects?subjectID=5ee5e364e01a0b232cfe08dc" title="Hóa học"><span class="txt" itemprop="title">Hóa học</span></a></li>
+                            <li><a href="" title="Đề hóa học hữu cơ nâng cao cho học sinh lớp 12"><span class="txt" itemprop="title">Đề hóa học hữu cơ nâng cao cho học sinh lớp 12</span></a></li>
+                            <li><a href="" title="&#91;MIỄN PHÍ&#93;"><span class="txt" itemprop="title">&#91;MIỄN PHÍ&#93; Mác-Lênin: Chương Mở đầu</span></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <div class="row">
+        <div class="col-xs-24 col-sm-15 col-md-15">
+            <!--Start of Tawk.to Script-->
+            <!--End of Tawk.to Script-->
+        </div>
+        <div class="col-xs-24 col-sm-9 col-md-9">
+        </div>
+    </div>
+    <div class="row" id="test">
+        <div class="col-sm-16 col-md-18">
+            <div id="breadcrumbs_mobile" class="col-xs-24 col-sm-24 box-coll hidden-lg hiddent-md ">
+                <div class="col-xs-20 col-sm-20 title"></div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="detail view-list">
+                <div class="panel panel-default result_width edit_panel" data-spy="affix" data-offset-top="250">
+                    <!--         <div class="panel-heading">Thông tin đề thi</div> -->
+                    <div class="panel-body edit_panel">
+                        <h1 class="m-bottom affix_hidden">&#91;MIỄN PHÍ&#93; Đề hóa học hữu cơ nâng cao cho học sinh lớp 12: [Hóa học] Các em lưu ý chỉ có 60 phút làm bài</h1>
+                        <div class="row">
+                            <div class="col-lg-8 col-xs-16 col-sm-12 col-md-8 affix_hidden">
+                                <div class="row exam-info">
+                                    <div class="col-xs-24 col-sm-12 col-md-8">
+                                        <label>Số câu</label>: 5
+                                    </div>
+                                    <div class="col-xs-24 col-sm-12 col-md-24">
+                                        <label>Thời gian</label>: Không giới hạn thời gian
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-8 col-xs-10 col-sm-24 col-md-8 text-center" style="position: absolute; right: 0;">
+                                <button type="submit" name="submit" class="btn btn-success btnSendTest">
+                                    <em class="fa fa-floppy-o">&nbsp;</em>Nộp bài
+                                </button>
+                                &nbsp; <a href="/" class="cancelLink"> Thoát </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <div>
+                </div>
+                <div class="testing m-bottom get_width" id="top">
+                    <form action="" method="post" id="frm-submit" class="col-xs-24 col-sm-24 col-md-24">
+                        <input type="hidden" value="1" name="save_test"/>
+                        <input type="hidden" value="47" name="exam_id"/>
+                        <input type='hidden' id='current_page'/>
+                        <input type='hidden' id='show_per_page'/>
+                        <div id="questionlist" data-exam-id="47">
+                        
+                            <div class="question-box">
+                                <div class="panel panel-default question-item " data-question-number="1">
+                                    <div class="panel-body" id="question1" >
+                                        <p class="m-bottom question">
+                                            <strong class="text-red questionOfExam" _examID = "5ee5f79dfa430106f4296452">Câu hỏi 1:</strong><b><span lang="VI" style="font-size:12.0pt">
+                                            <span style="line-height:107%"><span>
+                                            <br/>
+                                            <div class="container">
+                                                    <div class="row">
+                                                        <div class="col-sm-6">
+                                                            <img src="data:image/jpeg;base64,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" 
+                                                                alt="imgae download"/>
+                                                        </div> 
+                                                        <div class="col-sm-6" style="flex-wrap:wrap float:right";>
+                                                            <h1>A</h1>
+                                                            <h1>B</h1>
+                                                            <h1>C</h1>
+                                                        </div>
+                                                    </div>
+                                            </div>
+                                            <br/>
+                                            <div>
+                                                <input type="text"/> <button type="submit">Nộp </button>
+                                            </div>
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="question-box">
+                                <div class="panel panel-default question-item " data-question-number="1">
+                                    <div class="panel-body" id="question2">
+                                        <p class="m-bottom question">
+                                            <strong class="text-red questionOfExam" _examID = "5ee5f79dfa430106f4296452">Câu hỏi 2:</strong><b><span lang="VI" style="font-size:12.0pt">
+                                            <span style="line-height:107%"><span>
+                                            <p>Thủy ph&acirc;n&nbsp;este CH3CH2COOCH3, thu được ancol c&oacute;&nbsp;c&ocirc;ng thức l&agrave;?</p></span></span></span></b>
+                                        </p>
+                                        
+                                        <div class="row answer">
+                                        
+                                            <div class="answer-item col-xs-12 col-sm-12 col-md-12">
+                                                <label class="radio_question" >
+                                                    <input class="hidden-print selection chooseAnswer" _numberQus="2"  name="answer2" type="radio" _question="5ee5f8d8fa430106f4296454" value="1" /> A. CH3OH..
+                                                </label>
+                                            </div>
+                                        
+                                            <div class="answer-item col-xs-12 col-sm-12 col-md-12">
+                                                <label class="radio_question" >
+                                                    <input class="hidden-print selection chooseAnswer" _numberQus="2"  name="answer2" type="radio" _question="5ee5f8d8fa430106f4296454" value="2" /> B. C3H1OH..
+                                                </label>
+                                            </div>
+                                        
+                                            <div class="answer-item col-xs-12 col-sm-12 col-md-12">
+                                                <label class="radio_question" >
+                                                    <input class="hidden-print selection chooseAnswer" _numberQus="2"  name="answer2" type="radio" _question="5ee5f8d8fa430106f4296454" value="3" /> C. C2HsOH..
+                                                </label>
+                                            </div>
+                                        
+                                            <div class="answer-item col-xs-12 col-sm-12 col-md-12">
+                                                <label class="radio_question" >
+                                                    <input class="hidden-print selection chooseAnswer" _numberQus="2"  name="answer2" type="radio" _question="5ee5f8d8fa430106f4296454" value="4" /> D. C3HsOH..
+                                                </label>
+                                            </div>
+                                        
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="question-box">
+                                <div class="panel panel-default question-item " data-question-number="1">
+                                    <div class="panel-body" id="question3">
+                                        <p class="m-bottom question">
+                                            <strong class="text-red questionOfExam" _examID = "5ee5f79dfa430106f4296452">Câu hỏi 3:</strong><b><span lang="VI" style="font-size:12.0pt">
+                                            <span style="line-height:107%"><span>
+                                            <p>Ở nhiệt độ thường, kim loại Fe kh&ocirc;ng phản ứng với dung dịch&nbsp;n&agrave;o sau đ&acirc;y?</p></span></span></span></b>
+                                        </p>
+                                        
+                                        <div class="row answer">
+                                        
+                                            <div class="answer-item col-xs-12 col-sm-12 col-md-12">
+                                                <label class="radio_question" >
+                                                    <input class="hidden-print selection chooseAnswer" _numberQus="3"  name="answer3" type="radio" _question="5ee5f940fa430106f4296455" value="1" /> A. NaNO3..
+                                                </label>
+                                            </div>
+                                        
+                                            <div class="answer-item col-xs-12 col-sm-12 col-md-12">
+                                                <label class="radio_question" >
+                                                    <input class="hidden-print selection chooseAnswer" _numberQus="3"  name="answer3" type="radio" _question="5ee5f940fa430106f4296455" value="2" /> B. HCI..
+                                                </label>
+                                            </div>
+                                        
+                                            <div class="answer-item col-xs-12 col-sm-12 col-md-12">
+                                                <label class="radio_question" >
+                                                    <input class="hidden-print selection chooseAnswer" _numberQus="3"  name="answer3" type="radio" _question="5ee5f940fa430106f4296455" value="3" /> C. CuSO4..
+                                                </label>
+                                            </div>
+                                        
+                                            <div class="answer-item col-xs-12 col-sm-12 col-md-12">
+                                                <label class="radio_question" >
+                                                    <input class="hidden-print selection chooseAnswer" _numberQus="3"  name="answer3" type="radio" _question="5ee5f940fa430106f4296455" value="4" /> D. AgNO3..
+                                                </label>
+                                            </div>
+                                        
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="question-box">
+                                <div class="panel panel-default question-item " data-question-number="1">
+                                    <div class="panel-body" id="question4">
+                                        <p class="m-bottom question">
+                                            <strong class="text-red questionOfExam" _examID = "5ee5f79dfa430106f4296452">Câu hỏi 4:</strong><b><span lang="VI" style="font-size:12.0pt">
+                                            <span style="line-height:107%"><span>
+                                            <p>Dung dịch n&agrave;o sau đ&acirc;y l&agrave;m <strong>xanh </strong>quỳ t&igrave;m</p></span></span></span></b>
+                                        </p>
+                                        
+                                        <div class="row answer">
+                                        
+                                            <div class="answer-item col-xs-12 col-sm-12 col-md-12">
+                                                <label class="radio_question" >
+                                                    <input class="hidden-print selection chooseAnswer" _numberQus="4"  name="answer4" type="radio" _question="5ee5fa76fa430106f4296456" value="1" /> A. Metanol..
+                                                </label>
+                                            </div>
+                                        
+                                            <div class="answer-item col-xs-12 col-sm-12 col-md-12">
+                                                <label class="radio_question" >
+                                                    <input class="hidden-print selection chooseAnswer" _numberQus="4"  name="answer4" type="radio" _question="5ee5fa76fa430106f4296456" value="2" /> B. Glixerol..
+                                                </label>
+                                            </div>
+                                        
+                                            <div class="answer-item col-xs-12 col-sm-12 col-md-12">
+                                                <label class="radio_question" >
+                                                    <input class="hidden-print selection chooseAnswer" _numberQus="4"  name="answer4" type="radio" _question="5ee5fa76fa430106f4296456" value="3" /> C. Axit axetic..
+                                                </label>
+                                            </div>
+                                        
+                                            <div class="answer-item col-xs-12 col-sm-12 col-md-12">
+                                                <label class="radio_question" >
+                                                    <input class="hidden-print selection chooseAnswer" _numberQus="4"  name="answer4" type="radio" _question="5ee5fa76fa430106f4296456" value="4" /> D. Metylamin..
+                                                </label>
+                                            </div>
+                                        
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="question-box">
+                                <div class="panel panel-default question-item " data-question-number="1">
+                                    <div class="panel-body" id="question5">
+                                        <p class="m-bottom question">
+                                            <strong class="text-red questionOfExam" _examID = "5ee5f79dfa430106f4296452">Câu hỏi 5:</strong><b><span lang="VI" style="font-size:12.0pt">
+                                            <span style="line-height:107%"><span>
+                                            <p>Phản ứng n&agrave;o sau đ&acirc;y l&agrave; phản ứng nhiệt nh&ocirc;m?&nbsp;</p></span></span></span></b>
+                                        </p>
+                                        
+                                        <div class="row answer">
+                                        
+                                            <div class="answer-item col-xs-12 col-sm-12 col-md-12">
+                                                <label class="radio_question" >
+                                                    <input class="hidden-print selection chooseAnswer" _numberQus="5"  name="answer5" type="radio" _question="5ee5fb14fa430106f4296457" value="1" /> A. 3FeO + 2Al  =&gt; 3Fe + AhO3..
+                                                </label>
+                                            </div>
+                                        
+                                            <div class="answer-item col-xs-12 col-sm-12 col-md-12">
+                                                <label class="radio_question" >
+                                                    <input class="hidden-print selection chooseAnswer" _numberQus="5"  name="answer5" type="radio" _question="5ee5fb14fa430106f4296457" value="2" /> B. 2Al + 2NaOH + 2H2O =&gt; 2NaA1O2 + 3H2..
+                                                </label>
+                                            </div>
+                                        
+                                            <div class="answer-item col-xs-12 col-sm-12 col-md-12">
+                                                <label class="radio_question" >
+                                                    <input class="hidden-print selection chooseAnswer" _numberQus="5"  name="answer5" type="radio" _question="5ee5fb14fa430106f4296457" value="3" /> C. 2Al + 3H2SO4 =&gt; Ah(SO4)3 + 3H2..
+                                                </label>
+                                            </div>
+                                        
+                                            <div class="answer-item col-xs-12 col-sm-12 col-md-12">
+                                                <label class="radio_question" >
+                                                    <input class="hidden-print selection chooseAnswer" _numberQus="5"  name="answer5" type="radio" _question="5ee5fb14fa430106f4296457" value="4" /> D. 2Al + 3CuSO4 =&gt; Ah(SO4)3 + 3Cu..
+                                                </label>
+                                            </div>
+                                        
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </form>
+                    <div class="clearfix"></div>
+                    
+                    <div class="text-center">
+                        <button type="submit" name="submit" class="btn btn-success btnSendTest">
+                            <em class="fa fa-floppy-o">&nbsp;</em>Nộp bài
+                        </button>
+                        &nbsp; <a href="" class="cancelLink"> Thoát </a>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    <%- include ('../partials/sidebar') %>
+    
+<%- include ('../partials/footer') %>
+
+<script>
+
+    $(document).on('click', '.btnSendTest', function (e) {
+		e.preventDefault();
+        let examID = $('.questionOfExam').attr('_examID');
+
+        let correctNumber = 0;
+        let unfinishQuestion;
+        let falseArr = [];
+        let trueArr = [];
+        let point;
+		
+		if(examID){
+                $.ajax({
+                    url: `/exam/info-exam/${examID}`,
+                    method: 'GET',
+                    success: resp => {
+                        if(!resp.error){
+                            let infoExam = resp.data;
+                                for(let j=0; j < infoExam.question.length; j++){
+                                    for(let i=0 ; i < arrResult.length; i++){
+                                    //Câu trả lời sai
+                                    if(arrResult[i].questionID == infoExam.question[j]._id && arrResult[i].correct.toString() !== infoExam.question[j].correct.toString()){
+                                        falseArr.push(arrResult[i].questionID)
+                                    }
+
+                                    //Câu trả lời đúng
+                                    if(arrResult[i].questionID == infoExam.question[j]._id && arrResult[i].correct.toString() == infoExam.question[j].correct.toString()){
+                                        correctNumber += 1;
+                                        trueArr.push(arrResult[i].questionID)
+                                    }
+
+                                    unfinishQuestion = infoExam.question.length - arrResult.length;
+
+                                }
+                            }
+
+                            //let dontCompleteNumber = infoExam.question.length - arrResult.length;
+
+                            // console.log(`Số câu sai: ${falseNumber}`);
+
+                            //console.log(`Sô câu chưa làm: ${unfinishQuestion}`);
+
+                            //console.log(`Những câu sai: ${falseArr}`);
+
+                            //console.log(`Những câu đúng: ${trueArr}`);
+
+
+                            point = (10/infoExam.question.length)*correctNumber;
+                            //console.log(`Điểm của bạn là: ${point}`);
+
+
+                            //console.log(falseArr, trueArr, point)
+                        if(unfinishQuestion > 0){
+
+                            if (window.confirm(`Bạn có ${unfinishQuestion} câu chưa làm. Bạn có chắc chắn nộp bài không?`)) {
+                                if(falseArr.length || trueArr.length){
+                                    $.ajax({
+                                    url: `/result-exam`,
+                                    method: 'POST',
+                                    data: { point, falseArr, trueArr, examID, unfinishQuestion },
+                                    success: resp => {
+
+                                        let resultID = resp.data._id;
+                                        
+                                        console.log(resp)
+
+                                        if(!resp.error){
+
+                                            window.location.href = `/result-exam?resultID=${resultID}&examID=${examID}`
+                                        }
+                                    },
+                                    error: err => console.log({ err })
+                                    });
+
+                                }
+                            }
+
+                        } else {
+
+                            if (window.confirm(`Bạn có chắc chắn nộp bài không?`)) {
+                                if(falseArr.length || trueArr.length){
+                                    $.ajax({
+                                    url: `/result-exam`,
+                                    method: 'POST',
+                                    data: { point, falseArr, trueArr, examID, unfinishQuestion },
+                                    success: resp => {
+
+                                        let resultID = resp.data._id;
+                                        
+                                        console.log(resp)
+
+                                        if(!resp.error){
+
+                                            window.location.href = `/result-exam?resultID=${resultID}&examID=${examID}`
+                                        }
+                                    },
+                                    error: err => console.log({ err })
+                                    });
+
+                                }
+                            }
+
+                        }
+                            
+                        }
+                        
+                    },
+                    error: err => console.log({ err })
+                });
+
+		}
+
+	});
+
+    let arrResult = [];
+    $(`.chooseAnswer`).on('change', function() {
+        let questionID = $(this).attr('_question');
+        let numberQus = $(this).attr('_numberQus');
+        let correct =  $(`input[name="answer${numberQus}"]:checked`).val();
+
+        if(questionID && correct){
+            for (var i =0; i < arrResult.length; i++){
+                if (arrResult[i].questionID === questionID) {
+                    arrResult.splice(i,1);
+                    break;
+                }
+            }
+            arrResult.push({ questionID, correct })
+            console.log(arrResult)
+        }
+    });
+
+</script>
+

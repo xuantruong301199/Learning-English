@@ -1,0 +1,194 @@
+<div class="col-sm-8 col-md-6">
+                    <% if (!infoUser) { %>
+                        <div class="panel panel-primary form-login">
+                            <div class="panel-heading">
+                                Tài khoản
+                            </div>
+                            <div class="panel-body">
+                                <form action="/user/login" method="POST" autocomplete="off" novalidate>
+                                    <div class="nv-info margin-bottom" data-default="Hãy đăng nhập thành viên để trải nghiệm đầy đủ các tiện ích trên site">Hãy đăng nhập thành viên để trải nghiệm đầy đủ các tiện ích trên site</div>
+                                    <div class="form-detail">
+                                        <div class="form-group loginstep1">
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><em class="fa fa-user fa-lg"></em></span>
+                                                <input type="text" name="email" class="required form-control" id="email" placeholder="Tên đăng nhập hoặc email" maxlength="100" data-pattern="/^(.){3,}$/" onkeypress="validErrorHidden(this);" data-mess="Tên đăng nhập chưa được khai báo">
+                                            </div>
+                                        </div>
+    
+                                        <div class="form-group loginstep1">
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><em class="fa fa-key fa-lg fa-fix"></em></span>
+                                                <input type="password" name="password" autocomplete="off" class="required form-control" id="password" placeholder="Mật khẩu" maxlength="100" data-pattern="/^(.){3,}$/" onkeypress="validErrorHidden(this);" data-mess="Mật khẩu đăng nhập chưa được khai báo">
+                                            </div>
+                                        </div>
+                                        <div class="text-center margin-bottom-lg">
+                                            <a href="/register"><input type="button" value="Đăng ký" class="btn btn-default" /></a>
+                                            <button type="submit" class="bsubmit btn btn-primary btnDangNhap">Đăng nhập</button>
+                                        </div>
+                                        <div class="form-group">
+                                        <div class="text-right clearfix">
+                                            <a href="#" onclick="modalShowByObj('#guestReg_nv1', 'recaptchareset')">Đăng ký</a>
+                                        </div>
+                                    </div>  
+                                        <div class="text-center openid-btns">
+                                            
+                                            <div class="btn-group m-bottom btn-group-justified">
+                                                <button class="btn openid-facebook disabled" type="button" tabindex="-1"><i class="fa fa-fw fa-facebook"></i></button>
+                                                <a class="btn openid-facebook" href="">Đăng nhập với Facebook</a>
+                                            </div>
+                                            <div class="btn-group m-bottom btn-group-justified">
+                                                <button class="btn openid-google disabled" type="button" tabindex="-1"><i class="fa fa-fw fa-google-plus"></i></button>
+                                                <a class="btn openid-google" href="">Đăng nhập với Google</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    <% }else{ %>
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                Tài khoản
+                            </div>
+                            <div class="panel-body">
+                                <div class="content signed clearfix">
+                                    <div class="nv-info" style="display:none"></div>
+                                    <div class="userBlock">
+                                        <h3 class="text-center margin-bottom-lg"><span class="lev-user text-normal margin-right">Tài khoản: </span> <%=infoUser.fullname%></h3>
+                                        <div class="row margin-bottom-lg">
+                                            <div class="col-xs-8 text-center">
+                                                <a title="" href="#"><img id="avatar-default" src="../storage/images/<%=infoUser.avatar%>" _avatar="<%=infoUser.avatar%>" alt="avatar-default" class="img-thumbnail bg-gainsboro" /></a>
+                                            </div>
+                                            <div class="col-xs-16">
+                                                <ul class="nv-list-item sm">
+                                                    <li class="active">
+                                                        <a href="/info-user?userID=<%=infoUser._id%>">Thông tin tài khoản</a>
+                                                    </li>
+                                                    <li class="active">
+                                                        <a href="/edit-info-user?userID=<%=infoUser._id%>">Thiết lập tài khoản</a>
+                                                    </li>
+                                                    <li>
+                                                    <% if (infoUser.role == 100) { %>
+                                                        <a href="">Tài khoản: <b>Super Admin</b></a>
+                    
+                                                    <% } else if (infoUser.role == 1){%>
+                                                        <a href="">Tài khoản: <b>Giáo viên</b></a>
+                    
+                                                    <% } else {%>
+                                                        <a href="">Tài khoản: <b>Học sinh</b></a>
+                                                    <% }%>
+                                                        
+                                                    </li>
+                                                    <li><a href="/history-test">Lịch sử thi</a></li>
+                                                    <li><a href="/list-exam-by-save">Các đề thi đã lưu</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-xs-8 text-right">
+                                                <button type="button" class="btn btn-default btn-sm active">
+                                                    <a href="/logout"><em class="fa fa-sign-out"></em> Đăng xuất</a>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    <% } %>
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            Thống kê truy cập
+                        </div>
+                        <div class="panel-body">
+                            <ul class="counter list-none display-table">
+                                <li><span><em class="fa fa-bolt fa-lg fa-horizon"></em>Đang truy cập</span><span>18</span></li>
+                                <li><span><em class="fa fa-user fa-lg fa-horizon"></em>Thành viên online</span><span>1</span></li>
+                                <li><span><em class="fa fa-bullseye fa-lg fa-horizon"></em>Khách viếng thăm</span><span>17</span></li>
+                                <li><span><em class="fa fa-filter fa-lg fa-horizon margin-top-lg"></em>Hôm nay</span><span class="margin-top-lg">1,377</span></li>
+                                <li><span><em class="fa fa-calendar-o fa-lg fa-horizon"></em>Tháng hiện tại</span><span>11,535</span></li>
+                                <li><span><em class="fa fa-bars fa-lg fa-horizon"></em>Tổng lượt truy cập</span><span>375,767</span></li>
+                            </ul>
+
+                        </div>
+                    </div>
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <a href="/nhom-de-thi/de-thi-moi/">Đề luyện thi mới</a>
+                        </div>
+                        <div class="panel-body">
+                            <ul class="block_groups">
+                                <li class="clearfix">
+                                    <a class="show" href="/vi/test/toan-cao-cap-1/co-phi-dai-so-tuyen-tinh-chuong-1-hang-cua-ma-tran-237.html">&#91;CÓ PHÍ&#93; Đại Số Tuyến Tính - Chương 1 - Hạng Của Ma Trận</a>
+                                </li>
+                                <li class="clearfix">
+                                    <a class="show" href="/vi/test/toan-cao-cap-1/dai-so-tuyen-tinh-chuong-1-ma-tran-cac-phep-toan-236.html">&#91;CÓ PHÍ&#93; Đại Số Tuyến Tính - Chương 1 - Ma trận & Các phép toán</a>
+                                </li>
+                                <li class="clearfix">
+                                    <a class="show" href="/vi/test/toan-cao-cap-1/dai-so-tuyen-tinh-chuong-1-dinh-thuc-235.html">&#91;CÓ PHÍ&#93; Đại Số Tuyến Tính - Chương 1 - Định thức</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            Danh sách học phần
+                        </div>
+                        <div class="panel-body">
+                            <ul id="navigation233">
+                                <li>
+                                    <a title="Toán Cao Cấp" href="/vi/test/toan-cao-cap/">Toán Cao Cấp</a>
+                                    <ul>
+                                        <li>
+                                            <li>
+                                                <a title="Xác Xuất Thống Kê" href="/vi/test/xac-xuat-thong-ke/">Xác Xuất Thống Kê</a>
+                                            </li>
+
+                                    </ul>
+                                    </li>
+                                    <li>
+                                        <a title="Tiếng Anh" href="/vi/test/tieng-anh/">Tiếng Anh</a>
+                                    </li>
+                                    <li>
+                                        <a title="Đại Cương" href="/vi/test/dai-cuong/">Đại Cương</a>
+                                        <ul>
+                                            <li>
+                                                <a title="Tư Tưởng Hồ Chí Minh" href="/vi/test/tu-tuong-ho-chi-minh/">Tư Tưởng Hồ Chí Minh</a>
+                                            </li>
+
+                                            <li>
+                                                <a title="Mác - Lênin" href="/vi/test/mac-lenin/">Mác - Lênin</a>
+                                            </li>
+                                            <li>
+                                                <a title="Đường Lối Cách Mạng Của Đảng CS Việt Nam" href="/vi/test/Duong-Loi-Cach-Mang-Cua-Dang-CS-Viet-Nam/">Đường Lối Cách Mạng Của Đảng CS Việt Nam</a>
+                                            </li>
+
+                                    </li>
+                                    <li>
+                                        <a title="Chuyên Ngành" href="">Chuyên Ngành</a>
+                                        <ul>
+                                            <li>
+                                                <a title="Công Nghệ Thông tin" href="">Công Nghệ Thông tin</a>
+                                                <ul>
+                                                    <li>
+                                                        <a title="Lập Trình Hướng Đối Tượng" href="">Lập Trình Hướng Đối Tượng</a>
+                                                </ul>
+                                                </li>
+                                        </ul>
+                                        </li>
+                                        </ul>
+                                        <div class="clear"></div>
+
+                        </div>
+                    </div>
+
+                    <!-- Ads_Square -->
+                    <div class="row">
+                        <!-- Global site tag (gtag.js) - Google Analytics -->
+                        <!-- Load Facebook SDK for JavaScript -->
+                        <div id="fb-root"></div>
+                        <!-- Your customer chat code -->
+                        <div class="fb-customerchat" attribution=setup_tool page_id="102478721259064" logged_in_greeting="Xin chào, chúng tôi có thể giúp gì cho bạn?" logged_out_greeting="Xin chào, chúng tôi có thể giúp gì cho bạn?">
+                        </div>
+                    </div>
+                </div>
