@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const VocabluarySchema = new Schema({
+const VocabularySchema = new Schema({
 
     //Hình 
     image: String,
@@ -10,7 +10,7 @@ const VocabluarySchema = new Schema({
     english: String,
 
     //TV
-    vietnamese: String,
+    tiengvietese: String,
 
     //Âm thanh 
     sound: String,
@@ -36,5 +36,5 @@ const VocabluarySchema = new Schema({
     //listen:String,
 });
 
-const VOCABLUARY_MODEL = mongoose.model('vocabluary',VocabluarySchema);
-module.exports = VOCABLUARY_MODEL;
+const VOCABULARY_MODEL = mongoose.model('vocabulary',VocabularySchema);
+module.exports = VOCABULARY_MODEL;

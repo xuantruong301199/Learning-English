@@ -17,6 +17,7 @@ route.get('/info-unit/:unitID', async (req, res) =>{
 })
 route.get('/list-unit', async (req, res) => {
     let listUnit = await UNIT_MODEL.getList();
+    console.log(listUnit);
     res.json(listUnit);
 })
 route.post('/update-unit/:unitID', async (req, res) =>{

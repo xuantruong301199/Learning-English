@@ -122,14 +122,14 @@
 				<div class="content-header content-header-scene">
 					<h1>LTTN Trang chủ <small>Đăng nhập lần cuối: 03:00 21, July</small></h1>
 				</div>
-<main class="content">
+        <main class="content">
 			<div class="container-fluid">
 				<div class="content-header">
-					<h1>Chức năng</h1>
+					<h1>Function</h1>
 					<nav aria-label="breadcrumb">
 						<ol class="breadcrumb">
-							<li class="breadcrumb-item"><a href="dashboard-1.html">Chức năng</a></li>
-							<li class="breadcrumb-item active">Khóa học</li>
+							<li class="breadcrumb-item"><a href="dashboard-1.html">Function</a></li>
+							<li class="breadcrumb-item active">Unit</li>
 						</ol>
 					</nav>
 				</div>
@@ -138,13 +138,13 @@
 					<div class="col-lg-6">
 						<form class="box needs-validation" novalidate>
 							<div class="box-header">
-								<h3>Thêm Khóa học</h3>
+								<h3>Add Unit</h3>
 							</div>
 							<div class="box-body">
 								<div class="form-group row">
-									<label for="jsValidationLengthMin" class="form-label col-3">Tên Khóa học</label>
+									<label for="jsValidationLengthMin" class="form-label col-3">Unit name</label>
 									<div class="col-9">
-										<input id="name-course" type="text" class="form-control" autocomplete="off" placeholder='Khóa học ...'>
+										<input id="name-unit" type="text" class="form-control" autocomplete="off" placeholder='Unit ...'>
 									</div>
 								</div>
 								<div class="form-group row">
@@ -155,7 +155,7 @@
 								</div>
 							</div>
 							<div class="box-footer">
-								<button class="btn btn-primary pull-right btnAddCourse">Thêm</button>
+								<button class="btn btn-primary pull-right btnAddUnit">Add</button>
 							</div>
 						</form>
 					</div>
@@ -195,26 +195,27 @@
 
  <script>
        
-    $(document).on('click', '.btnAddCourse', function(e) {
+    $(document).on('click', '.btnAddUnit', function(e) {
 		e.preventDefault();
 		
 		// let courseID = $(this).attr('_courseID');
 
-        let name        = $('#name-course').val().trim();
-        // let teacher 	= $('#name-teacher').val().trim();
+        let name        = $('#name-unit').val().trim();
+        // name, image, vocabluary, paragraph
+        let vocabluary 	= $('#name-teacher').val().trim();
 
-        // if(name.length < 1 || teacher.length < 1){
+        //  if(name.length < 1 || vocabluary.length < 1){
         if(name.length < 1 ){
 
             return toastr['error']('Tên bộ đề không được để trống', 'Thông báo');
 
         } else{
             $.ajax({
-                url: `/course/insert-course`,
+                url: `/unit/insert-unit`,
                 method: 'POST',
-                data: { name },
+                data: {name, vocabluary},
                 success: resp => {
-					
+
                     console.log({ resp })
                     
                     if(!resp.error){
