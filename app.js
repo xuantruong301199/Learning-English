@@ -35,6 +35,9 @@ const VOCABULARY_ROUTING = require('./routers/vocabulary');
 const UNIT_MODEL = require('./models/unit');
 const EXAM_MODEL = require('./models/exam');
 const COURSE_MODEL = require('./models/course');
+const QUESTION_MODEL = require('./models/question');
+const VOCABULARY_MODEL = require('./models/vocabulary')
+const PARAGRAPH_MODEL = require('./models/paragraph');
 
 
 app.use(expressSession({
@@ -59,8 +62,9 @@ app.use('/question', QUESTION_ROUTING);
 app.use('/vocabulary', VOCABULARY_ROUTING);
 
 
-app.get('/', async function(req, res) {
-    renderToView(req, res, "pages/home", {});
+app.get('/', async function (req, res) {
+    let listCourse = await COURSE_MODEL.getList();
+    renderToView(req, res, "pages/home", { listCourse: listCourse.data });
 });
 
 app.get('/register', function(req, res) {
@@ -80,10 +84,10 @@ app.get('/result', function(req, res) {
     renderToView(req, res, "pages/result", {})
 })
 app.get('/add-unit', async function(req, res) {
+    let listCourse = await COURSE_MODEL.getList();
+    console.log({ listCourse });
 
-    let listUnit = await UNIT_MODEL.getList();
-
-    renderToView(req, res, "pages/add-unit", { listUnit: listUnit.data })
+    renderToView(req, res, "pages/add-unit", { listCourse: listCourse.data });
 })
 
 app.get('/add-course', async function(req, res) {
@@ -102,9 +106,25 @@ app.get('/add-exam', async function(req, res) {
     renderToView(req, res, "pages/add-exam", { listUnit: listUnit.data, listExam: listExam.data })
 })
 
-app.get('/add-question', function(req, res) {
-    renderToView(req, res, "pages/add-question", {})
+app.get('/add-question',async function (req, res) {
+    let listExam = await EXAM_MODEL.getList();
+    let listQuestion = await QUESTION_MODEL.getList();
+    renderToView(req, res, "pages/add-question", {listExam: listExam.data, listQuestion: listQuestion.data})
 })
+
+app.get('/add-vocabulary', async function(req, res) {
+    let listUnit = await UNIT_MODEL.getList({});
+    console.log({listUnit});
+    renderToView(req, res, "pages/add-vocabulary", { listUnit: listUnit.data })
+})
+
+
+app.get('/add-paragraph', async function(req, res) {
+    let listUnit = await UNIT_MODEL.getList({});
+    let listPara = await PARAGRAPH_MODEL.getList();
+
+    renderToView(req, res, "pages/add-paragraph", { listUnit: listUnit.data, listPara: listPara.data })
+})  
 
 app.get('/list-result-exam', function(req, res) {
     renderToView(req, res, "pages/list-result-exam", {})
@@ -116,15 +136,42 @@ app.get('/list-exam', function(req, res) {
 app.get('/exam', function(req, res) {
     renderToView(req, res, "pages/exam", {})
 })
-app.get('/vocabulary', function(req, res) {
-    renderToView(req, res, "pages/vocabulary", {})
+app.get('/vocabulary', async function (req, res) {
+    let { unitID } = req.query;
+    let infoUnit = await UNIT_MODEL.getInfo({ unitID });
+    console.log({ infoUnit });
+    let listVocabulary = await VOCABULARY_MODEL.getList({ unitID });
+    console.log({ listVocabulary });
+    renderToView(req, res, "pages/vocabulary", { listVocabulary: listVocabulary.data, infoUnit: infoUnit.data });
 })
-app.get('/paragraph', function(req, res) {
-    renderToView(req, res, "pages/paragraph", {})
+
+app.get('/paragraph',async function (req, res) {
+    let listPara = await PARAGRAPH_MODEL.getList();
+    renderToView(req, res, "pages/paragraph", {listPara: listPara.data})
+})
+app.get('/list-vocabulary',async function (req, res) {
+    let { unitID } = req.query;
+    let infoUnit = await UNIT_MODEL.getInfo({ unitID });
+    let listVocabulary = await VOCABULARY_MODEL.getList({ unitID });
+    console.log({ listVocabulary });
+    renderToView(req, res, "pages/list-vocabulary", {listVocabulary: listVocabulary.data
+    })
+})
+app.get('/sound', async function (req, res) {
+    let { unitID } = req.query;
+    let infoUnit = await UNIT_MODEL.getInfo({ unitID });
+    let listVocabulary = await VOCABULARY_MODEL.getList({ unitID });
+    console.log({ listVocabulary });
+    renderToView(req, res, "pages/vocabulary", { listVocabulary: listVocabulary.data, infoUnit: infoUnit.data });
 })
 app.get('/result', function(req, res) {
     renderToView(req, res, "pages/result", {})
 })
+
+// app.get('/unit',async function (req, res) {
+//     let listVocab = await VOCABULARY_MODEL.getList();
+//     renderToView(req, res, "pages/unit", {listVocab: listVocab.data})
+// })
 
 const uri = 'mongodb://localhost/learning_english';
 

@@ -3,6 +3,8 @@ const Schema = mongoose.Schema;
 
 const VocabularySchema = new Schema({
 
+    numerical: String,
+    
     //Hình 
     image: String,
 
@@ -13,7 +15,7 @@ const VocabularySchema = new Schema({
     tiengvietese: String,
 
     //Âm thanh 
-    sound: String,
+    spelling: String,
 
     unit:{
         type: Schema.Types.ObjectId,

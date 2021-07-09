@@ -12,11 +12,6 @@ const QuestionSchema = new Schema({
         type: String,
     }],
 
-    //Bài học
-    unit:{
-        type: Schema.Types.ObjectId,
-        ref: "unit"
-    },
     //Đề kiểm tra
     exam: {
         type: Schema.Types.ObjectId,

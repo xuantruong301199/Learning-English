@@ -1,6 +1,5 @@
-	<%- include ('../dashboard/header') %>
-	<%- include ('../dashboard/header') %>
-	<%- include('../dashboard/sidebar') %>
+<%- include('../dashboard/header') %>
+		<%- include('../dashboard/sidebar') %>
 		<header class="header">
 			<ul class="header-nav">
 				<li>
@@ -123,88 +122,101 @@
 				<div class="content-header content-header-scene">
 					<h1>LTTN Trang chủ <small>Đăng nhập lần cuối: 03:00 21, July</small></h1>
 				</div>
+<script src="https://cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>
 <main class="content">
 	<div class="container-fluid">
 		<div class="content-header">
-			<h1>Chức năng</h1>
+			<h1>Add Paragraph</h1>
 			<nav aria-label="breadcrumb">
 				<ol class="breadcrumb">
 					<li class="breadcrumb-item"><a href="dashboard-1.html">Chức năng</a></li>
-					<li class="breadcrumb-item active">Bộ đề</li>
+					<li class="breadcrumb-item active">Unit</li>
 				</ol>
 			</nav>
 		</div>
 
 		<div class="row">
 			<div class="col-lg-9">
-				<form class="box needs-validation" novalidate>
+				<form class="box needs-validation" novalidate id="formCreateQuestion"
+					enctype="multipart/form-data" action="/vocabulary" method="POST">
 					<div class="box-header">
-						<h3>Tạo bộ đề</h3>
+						<h3>Add Paragraph <span class="numberCountQuestion">1</span></h3>
 					</div>
 					<div class="box-body">
 						<div class="form-group row">
-							<label for="jsValidationRequired" class="form-label col-3" >Tên bộ đề</label>
+							<label for="jsValidationRequired" class="form-label col-2" >Unit</label>
 							<div class="col-9">
-								<input id="nameExam" class="form-control" autocomplete="off" placeholder="Bộ đề 1">
+								<select id="listUnit" required class="form-control onChangeExam" >
+									<option value>Choose Unit</option>
+											
+										<% if (listUnit && listUnit.length) { %>
+											<% listUnit.forEach(unit => { %>
+									<option value="<%=unit._id%>"><%=unit.name%></option>
+										<% }) %>
+									<% } %>
+												
+								</select>
 							</div>
 						</div>
 						
 						<div class="form-group row">
-							<div class="col-9 offset-3">
-								<select id="unitID" required class="form-control">
-									<option value>Chọn Unit</option>
-									<% if (listUnit && listUnit.length) { %>
-										<% listUnit.forEach(unit => { %>
-											<option value="<%=unit._id%>"><%=unit.name%></option>
-										<% }) %>
-									<% } %>
-										
-
-								</select>
-								<span class="invalid-feedback">Сhoose option.</span>
+							<label class="form-label col-2">Paragraph</label>
+							<div class="col-9">
+								<textarea name="editor1" id="english"></textarea>
 							</div>
 						</div>
 						<div class="form-group row">
-							<label for="jsValidationTypeEmail" class="form-label col-3">Mô tả</label>
+							<label class="form-label col-2">Translate</label>
 							<div class="col-9">
-								<input id="descriptionExam" class="form-control" autocomplete="off" placeholder='Viết gì đó..'>
+								<textarea name="editor2" id="tiengvietese"></textarea>
 							</div>
 						</div>
-					</div>
+						
+                        <div class="form-group row">
+							<label class="form-label col-2">Tải hình ảnh</label>
+                            <div class="col-9">
+							    <input id="image" type="file" name="image" class="form-control">
+                            </div>
+						</div>
+
 					<div class="box-footer">
-						<button class="btn btn-primary pull-right btnCreateExam">Thêm/Cập nhật</button>
+						<button class="btn btn-primary pull-right btnCreateParagraph" type="submit">Add Paragraph</button>
 					</div>
 				</form>
 			</div>
 			<div class="box col-lg-9">
 					<div class="box-header">
-						<h3 >Danh sách bộ đề</h3>
+						<h3 >List Paragraph</h3>
 					</div>
 					<div class="box-body">
 						<div class="table-responsive">
 							<table class="table table-noborder">
 								<tbody>
 									<tr>
-										<th>Tên bộ đề</th>
-										<th>Môn học</th>
+										<th>Numerical</th>
+										<th>Name Paragraph</th>
+										<th>Vietnamese</th>
+										<th>Update/Delete</th>
 										
 									</tr>
 									
-									<% if (listExam && listExam.length) { %>
-										<% listExam.forEach(exam => { %>
+									<% if (listPara && listPara.length) { %>
+										<% listPara.forEach(paragraph => { %>
 									<tr>
-										<td><%=exam.name%></td> <!--Tên bộ đề-->
+										<td><%=paragraph.numerical%></td> <!--Tên đoạn văn-->
 
-											<% listUnit.forEach(unit => { %>
-												
-											<% }) %>
+										<td><%=paragraph.english%></td> <!--Tên đoạn văn-->
+
+										<td><%=paragraph.tiengvietese%></td> <!--Tên đoạn văn-->
+
+										
 
 										<td>
 											<div class="user-panel-actions">
 												<a href="#"></a>
-												<a href="#"><i class="fas fa-pencil-alt btnEditExam" _examID="<%=exam._id%>"></i></a>
+												<a href="#"><i class="fas fa-pencil-alt btnEditExam" _paragraphID="<%=paragraph._id%>"></i></a>
 												<a href="#"></a>
-												<a href="#"><i class="fas fa-trash-alt btnRemoveExam" _examID="<%=exam._id%>"></i></a>
+												<a href="#"><i class="fas fa-trash-alt btnRemoveExam" _paragraphID="<%=paragraph._id%>"></i></a>
 											</div>
 										</td>
 									</tr>
@@ -216,156 +228,95 @@
 					</div>
 				</div>
 		</div>
-		</div>
 	</div>
 </main>
 
-	<%- include ('../dashboard/footer') %>
-
+<%- include('../dashboard/footer') %>
 <script>
-    
-	//Thêm bộ đề -------------->
-    $(document).on('click', '.btnCreateExam', function(e) {
-		
+
+
+	// //Add Paragraph ---------------> 
+	$(document).on('click', '.btnCreateParagraph', function(e) {
 		e.preventDefault();
-		let examID = $(this).attr('_examID');
-
-		console.log(examID)
-
-		let name        = $('#nameExam').val().trim();
-		// let description = $('#descriptionExam').val().trim();
-		// let level       = $('#level').val();
-		// let subjectID   = $('#subjectID').val();
-		let unitID		= $('#unitID').val();
-
-		if(!examID){
-
-			console.log({ name, unitID})
-
-			if(name.length < 1 ||  unitID.length < 1){
-
-				return toastr['error']('Chưa nhập đủ trường', 'Thông báo');
-
-			} else{
+        let unitID = 		$('#listUnit').val();
+		let english = 		$('#english').val();
+		let tiengvietese = $('#tiengvietese').val();
+		let image = 		$('#image').val();
+		console.log({unitID, english, image, tiengvietese});
 				$.ajax({
-					url: `/exam/add-exam`,
+					url: `/paragraph/add-paragraph`,
 					method: 'POST',
-					data: { name, unitID},
+					data: { unitID, english, image, tiengvietese},
 					success: resp => {
-
 						console.log({ resp })
-						
 						if(!resp.error){
-
 							toastr['success']('Thêm thành công', 'Thông báo');
-							window.location.reload();
-
+							etTimeout(function(){ window.location.reload(); }, 700);
 						}else{
-
 							return toastr['error']('Thêm thất bại', 'Thông báo');
 						}
 					},
 					error: err => console.log({ err })
 				});
-			}
-
-		} else {
-
-			console.log({name, unitID})
-			if(name.length < 1 ||  unitID.length < 1){
-
-				return toastr['error']('Chưa nhập đủ trường', 'Thông báo');
-
-			} else{
-				$.ajax({
-					url: `/exam/update-exam/${examID}`,
-					method: 'POST',
-					data: { name, unitID },
-					success: resp => {
-
-						console.log({ resp })
-						
-						if(!resp.error){
-
-							//toastr['success']('Cập nhật thành công', 'Thông báo');
-							alert(`Cập nhật thành công`)
-							window.location.reload();
-
-						}else{
-
-							return toastr['error']('Cập nhật thất bại', 'Thông báo');
-						}
-					},
-					error: err => console.log({ err })
-				});
-			}
-		}
-
-    })
-
-	//Xóa bộ đề --------------->
-	$(document).on('click', '.btnRemoveExam', function(e) {
-
-		let examID = $(this).attr('_examID');
-		console.log({ examID })
-		if (window.confirm('Bạn có chắc chắn xóa không?')) {
-            $.ajax({
-				url: `/exam/remove-exam/${examID}`,
-				method: 'GET',
-				success: resp => {
-
-					if(!resp.error){
-
-						$(this).closest("tr").remove();
-						return toastr['success']('Xóa thành công', 'Thông báo');
-
-					}else{
-
-						return toastr['error']('Xóa thất bại', 'Thông báo');
-					}
-				},
-				error: err => console.log({ err })
-			});
-        }
-    })
-
-	//Truyền data cập nhật ------------>
-	$(document).on('click', '.btnEditExam', function () {
-
-        let examID = $(this).attr('_examID');
-		
-		if(examID && examID.length){
-			$.ajax({
-				url: `/exam/info-exam/${examID}`,
-				method: 'GET',
-				success: resp => {
-
-					console.log({ resp })
-
-					let { _id: id, name, description, level, subjects: subjectID} = resp.data
-
-					console.log({ id, name, description, level, subjectID })
-					
-					if(!resp.error){
-						$('#nameExam').val(name);
-						$('#descriptionExam').val(description);
-						
-						$('#level').val(level);
-						$('#level').trigger('change');
-
-						$('#subjectID').val(subjectID._id);
-						$('#subjectID').trigger('change');
-
-						$('.btnCreateExam').attr('_examID', id);
-
-					} else {
-
-						return toastr['error']('Thất bại', 'Thông báo');
-					}
-				},
-				error: err => console.log({ err })
-			});
-		}
 	});
+
+       
+
+
+		
+		
+
+	// //Xóa câu hỏi --------------->
+	// $(document).on('click', '.btnRemoveQuestion', function(e) {
+	// 	e.preventDefault();
+	// 	let examID = $(this).attr('_examID');
+	// 	let questionID = $(this).attr('_questionID');
+	// 	console.log({ examID, questionID})
+
+	// 	if (window.confirm('Bạn có chắc chắn xóa không?')) {
+    //         $.ajax({
+	// 			url: `/question/remove-question/${questionID}?examID=${examID}`,
+	// 			method: 'GET',
+	// 			success: resp => {
+
+	// 				console.log({ resp })
+
+	// 				if(!resp.error){
+
+	// 					$(this).closest("tr").remove();
+	// 					return toastr['success']('Xóa thành công', 'Thông báo');
+
+	// 				}else{
+
+	// 					return toastr['error']('Xóa thất bại', 'Thông báo');
+	// 				}
+	// 			},
+	// 			error: err => console.log({ err })
+	// 		});
+    //     }
+    // })
+
+	// //Lấy ID truyền vào button xem trước --------------->
+	// $(document).on('change', '.onChangeExam', function() {
+	// 	let examID = $('#examID').val();
+	// 	let hrefExam = $('.hrefExam').attr('_examID', examID)
+	// })
+
+	//Sự kiện chuyển đến trang trắc nghiệm --------------->
+	// $(document).on('click', '.hrefExam', function(e) {
+	// 	e.preventDefault();
+	// 	let examID = $(this).attr('_examID');
+
+	// 	if(!examID){
+
+	// 		return toastr['warning']('Bạn chưa chọn bộ đề muốn xem', 'Thông báo');
+
+	// 	} else {
+			
+	// 		let _urlTemp = `/test-exam?examID=${examID}`
+	// 		window.open(_urlTemp, '_blank');
+
+	// 	}
+	// })
 
 </script>

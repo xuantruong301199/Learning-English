@@ -122,86 +122,163 @@
 				<div class="content-header content-header-scene">
 					<h1>LTTN Trang chủ <small>Đăng nhập lần cuối: 03:00 21, July</small></h1>
 				</div>
-        <main class="content">
-			<div class="container-fluid">
-				<div class="content-header">
-					<h1>Function</h1>
-					<nav aria-label="breadcrumb">
-						<ol class="breadcrumb">
-							<li class="breadcrumb-item"><a href="dashboard-1.html">Function</a></li>
-							<li class="breadcrumb-item active">Unit</li>
-						</ol>
-					</nav>
-				</div>
+<script src="https://cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>
+<main class="content">
+	<div class="container-fluid">
+		<div class="content-header">
+			<h1>Add Vocabulary</h1>
+			<nav aria-label="breadcrumb">
+				<ol class="breadcrumb">
+					<li class="breadcrumb-item"><a href="dashboard-1.html">Chức năng</a></li>
+					<li class="breadcrumb-item active">Unit</li>
+				</ol>
+			</nav>
+		</div>
 
-				<div class="row">
-					<div class="col-lg-6">
-						<form class="box needs-validation" novalidate>
-							<div class="box-header">
-								<h3>Add Unit</h3>
-							</div>
-							<div class="box-body">
-								<div class="form-group row">
-									<label for="jsValidationLengthMin" class="form-label col-3">Chọn khoá học</label>
-									<div class="col-9">
-										<select id="courseID" required="" class="form-control">
-											<option value="">Chọn Khoá học</option>
-											<% listCourse && listCourse.length && listCourse.forEach(course => { %>
-											 	<option value="<%=course._id%>"><%=course.name%> </option>
-											<% }) %>
-										</select>
-									</div>
-								</div>
-								<div class="form-group row">
-									<label for="jsValidationLengthMin" class="form-label col-3">Tên Unit</label>
-									<div class="col-9">
-										<input id="name-unit" type="text" class="form-control" autocomplete="off" placeholder='Unit ...'>
-									</div>
-								</div>
-								
-								
-							</div>
-							<div class="box-footer">
-								<button class="btn btn-primary pull-right btnAddUnit">Thêm</button>
-							</div>
-						</form>
+		<div class="row">
+			<div class="col-lg-9">
+				<form class="box needs-validation" novalidate id="formCreateQuestion"
+					enctype="multipart/form-data" action="/vocabulary" method="POST">
+					<div class="box-header">
+						<h3>Add Vocabulary <span class="numberCountQuestion">1</span></h3>
 					</div>
-                    
-				</div>
-			</div>
-		</main>
-<%- include('../dashboard/footer') %>
+					<div class="box-body">
+						<div class="form-group row">
+							<label for="jsValidationRequired" class="form-label col-2" >Unit</label>
+							<div class="col-9">
+								<select id="listUnit" required class="form-control onChangeExam" >
+									<option value>Choose Unit</option>
+											
+										<% if (listUnit && listUnit.length) { %>
+											<% listUnit.forEach(unit => { %>
+									<option value="<%=unit._id%>"><%=unit.name%></option>
+										<% }) %>
+									<% } %>
+												
+								</select>
+							</div>
+						</div>
+						<div class="form-group row">
+							<label class="form-label col-2">Vocabulary</label>
+							<div class="col-9">
+								<textarea name="editor1" id="english"></textarea>
+							</div>
+						</div>
+						<div class="form-group row">
+							<label class="form-label col-2">Translate</label>
+							<div class="col-9">
+								<textarea name="editor2" id="tiengvietese"></textarea>
+							</div>
+						</div>
+						<div class="form-group row">
+							<label class="form-label col-2">Spelling</label>
+							<div class="col-9">
+								<textarea name="editor3" id="spelling"></textarea>
+							</div>
+						</div>
+                        <div class="form-group row">
+							<label class="form-label col-2">Tải hình ảnh</label>
+                            <div class="col-9">
+							    <input id="image" type="file" name="image" class="form-control">
+                            </div>
+						</div>
 
- <script>
-       
-    $(document).on('click', '.btnAddUnit', function(e) {
+					<div class="box-footer">
+						<button class="btn btn-primary pull-right btnCreateVocabulary" type="submit">Add vocabulary</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</main>
+
+<%- include('../dashboard/footer') %>
+<script>
+
+	// //Add Vocabulary ---------------> 
+	$(document).on('click', '.btnCreateVocabulary', function(e) {
 		e.preventDefault();
-		
-        
-		let courseID = $('#courseID').val();
-        let name        = $('#name-unit').val().trim();
-        
-        if(!name && !courseID){
-            return toastr['error']('Tên bộ đề không được để trống', 'Thông báo');
-        } 
+
+        let unitID = 		$('#unitID').val();
+		let english = 		$('#english').val();
+		let tiengvietese = $('#tiengvietese').val();
+		let image = 		$('#image').val();
+		let spelling = 		$('#spelling').val();
 
 		$.ajax({
-			url: `/unit/insert-unit`,
+			url: `/vocabulary/add-vocabulary`,
 			method: 'POST',
-			data: { name, courseID },
+			data: { unitID, english, image, tiengvietese, spelling },
 			success: resp => {
 				console.log({ resp })
 				if(!resp.error){
 					toastr['success']('Thêm thành công', 'Thông báo');
-					setTimeOut(function(){
-						window.location.reload();
-					}, 500)
+					setTimeout(function(){ window.location.reload(); }, 700);
 				}else{
 					return toastr['error']('Thêm thất bại', 'Thông báo');
 				}
 			},
 			error: err => console.log({ err })
 		});
-    })
+	});
 
- </script>
+       
+
+
+		
+		
+
+	// //Xóa câu hỏi --------------->
+	// $(document).on('click', '.btnRemoveQuestion', function(e) {
+	// 	e.preventDefault();
+	// 	let examID = $(this).attr('_examID');
+	// 	let questionID = $(this).attr('_questionID');
+	// 	console.log({ examID, questionID})
+
+	// 	if (window.confirm('Bạn có chắc chắn xóa không?')) {
+    //         $.ajax({
+	// 			url: `/question/remove-question/${questionID}?examID=${examID}`,
+	// 			method: 'GET',
+	// 			success: resp => {
+
+	// 				console.log({ resp })
+
+	// 				if(!resp.error){
+
+	// 					$(this).closest("tr").remove();
+	// 					return toastr['success']('Xóa thành công', 'Thông báo');
+
+	// 				}else{
+
+	// 					return toastr['error']('Xóa thất bại', 'Thông báo');
+	// 				}
+	// 			},
+	// 			error: err => console.log({ err })
+	// 		});
+    //     }
+    // })
+
+	// //Lấy ID truyền vào button xem trước --------------->
+	// $(document).on('change', '.onChangeExam', function() {
+	// 	let examID = $('#examID').val();
+	// 	let hrefExam = $('.hrefExam').attr('_examID', examID)
+	// })
+
+	//Sự kiện chuyển đến trang trắc nghiệm --------------->
+	// $(document).on('click', '.hrefExam', function(e) {
+	// 	e.preventDefault();
+	// 	let examID = $(this).attr('_examID');
+
+	// 	if(!examID){
+
+	// 		return toastr['warning']('Bạn chưa chọn bộ đề muốn xem', 'Thông báo');
+
+	// 	} else {
+			
+	// 		let _urlTemp = `/test-exam?examID=${examID}`
+	// 		window.open(_urlTemp, '_blank');
+
+	// 	}
+	// })
+
+</script>

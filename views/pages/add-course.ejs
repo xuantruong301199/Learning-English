@@ -159,35 +159,6 @@
 							</div>
 						</form>
 					</div>
-                    <div class="box">
-							<div class="box-header">
-								<h3 >Danh sách Khóa học</h3>
-							</div>
-							<div class="box-body">
-								<div class="table-responsive">
-									<table class="table table-noborder">
-										<tbody>
-											<tr>
-												<th>Khóa học</th>
-												<th>­    </th>
-												<th>Giáo viên</th>
-
-											</tr>
-											<% if (listUnit && listUnit.length ) { %>
-												<%listUnit.forEach(unit => {%>
-                                            <tr>
-												<td></td>
-												<td><%=unit.name%></td>
-												
-											</tr>
-												<% }) %>
-											<% } %>
-                        						
-										</tbody>
-									</table>
-								</div>
-							</div>
-						</div>
 				</div>
 			</div>
 		</main>
@@ -220,8 +191,9 @@
                     if(!resp.error){
 
                         toastr['success']('Thêm thành công', 'Thông báo');
-						window.location.reload();
-						
+						setTimeout(function(){
+							window.location.reload();
+						}, 1000)
 
                     }else{
 

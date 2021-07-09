@@ -1,10 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-
 const ParagraphSchema = new Schema({
-
-    //tên đoạn văn
-    name: String,
+    numerical: String,
     //Hình
     image: String,
     

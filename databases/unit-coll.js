@@ -8,9 +8,6 @@ const UnitSchema = new Schema({
     //Hình
     image: String,
 
-    //Từ vựng
-    vocabluary: String,
-
     //Đoạn văn
     paragraph: String,
 
@@ -18,7 +15,13 @@ const UnitSchema = new Schema({
     dateCreate:{
         type: Date,
         default: Date.now()
-    }, 
+    },
+    
+    //Người tạo
+    course:{
+        type: Schema.Types.ObjectId,
+        ref: "course"
+    },
 
     //Người tạo
     owner:{

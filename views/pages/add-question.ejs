@@ -148,34 +148,23 @@
 							<div class="col-9">
 								<select id="examID" required class="form-control onChangeExam" >
 									<option value>Chọn bộ đề</option>
-								
-									
+										<% if (listExam && listExam.length) { %>
+										 	<% listExam.forEach(question => { %>
+											  <option value="<%=question._id%>"><%=question.name%> 
+                                    			</option>
+											 <% }) %>
+										<% } %>
 
-									<option value="5ee5f79dfa430106f4296452">Đề hóa học hữu cơ nâng cao cho học sinh lớp 12 [ Hóa học
-                                    
-                                    
-											
-										
-											
-										
-											
-										
-											
-										
-											
-												<td>12</td>
-											
-										]
-                                    </option>
+									
 									
 								
 								</select>
 							</div>
 						</div>
 						<div class="form-group row">
-							<label class="form-label col-2">Câu hỏi</label>
+							<label class="form-label col-2">Question</label>
 							<div class="col-9">
-								<textarea name="editor1" id="editor1"></textarea>
+								<textarea name="editor1" id="nameQuestion"></textarea>
 							</div>
 						</div>
                         <div class="form-group row">
@@ -248,21 +237,28 @@
 							<table class="table table-noborder list-exam-temp">
 								<tbody>
 									<tr>
-										<th>STT</th>
+										
 										<th>Câu hỏi</th>
 									</tr>
-									<tr>
-										<td>Câu 1</td>
-										<td>Cho dãy các chất sau: saccarozơ, glucozơ, fructozơ và axetilen. Số chất trong dãy có...</td>
+									<% if (listQuestion && listQuestion.length) { %>
+									 	<% listQuestion.forEach(question => { %>
+										  <tr>
+										<td><%=question.name%></td> <!--Tên bộ đề-->
+											<% listExam.forEach(exam => { %>
+											<% }) %>
+
 										<td>
+										
 											<div class="user-panel-actions">
-												<a href=""></a>
-												<a href=""><i class="fas fa-pencil-alt btnEditQuestion" ></i></a>
-												<a href=""></a>
-												<a href=""><i class="fas fa-trash-alt btnRemoveQuestion"></i></a>
+												<a href="#"></a>
+												<a href="#"><i class="fas fa-pencil-alt btnEditExam" _questionID="<%=question._id%>"></i></a>
+												<a href="#"></a>
+												<a href="#"><i class="fas fa-trash-alt btnRemoveExam" _questionID="<%=question._id%>"></i></a>
 											</div>
 										</td>
 									</tr>
+										 <% }) %>
+									<% } %>
 								</tbody>
 							</table>
 						</div>
@@ -278,170 +274,170 @@
 </main>
 <%- include('../dashboard/footer') %>
 
-// <script>
+<script>
 
 
-//     CKEDITOR.replace( 'editor1' );
+    
 
-// 	//Tạo câu hỏi ---------------> 
-// 	$(document).on('click', '.btnCreateQuestion', function(e) {
-// 		e.preventDefault();
+	//Tạo câu hỏi ---------------> 
+	$(document).on('click', '.btnCreateQuestion', function(e) {
+		e.preventDefault();
 
-// 		//Bộ đề
-//         let examID = $('#examID').val();
+		//Bộ đề
+        let examID = $('#examID').val();
 
-// 		//Câu hỏi
-// 		let nameQuestion = CKEDITOR.instances.editor1.getData().trim(); 
+		//Câu hỏi
+		let nameQuestion = $('#nameQuestion').val();
 
-//         let answerA = $('#answerA').val();
-//         let answerB = $('#answerB').val();
-//         let answerC = $('#answerC').val();
-//         let answerD = $('#answerD').val();
-
-
-// 		let answer = [answerA, answerB, answerC, answerD]
-
-// 		console.log(answer)
-
-//         let correct = $("input[type='radio'].selection:checked").val();
+        let answerA = $('#answerA').val();
+        let answerB = $('#answerB').val();
+        let answerC = $('#answerC').val();
+        let answerD = $('#answerD').val();
 
 
-// 		let formData = new FormData();
-// 		let _imageDemo = $('#image_question')[0].files[0];
-// 		console.log({ _imageDemo })
+		let answer = [answerA, answerB, answerC, answerD]
 
-// 		if(_imageDemo){
-// 			formData.append('image', _imageDemo);
-// 		}
+		console.log(answer)
 
-// 		formData.append('nameQuestion', nameQuestion);
-// 		formData.append('answer', answer);
-// 		formData.append('correct', correct);
-// 		formData.append('examID', examID);
+        let correct = $("input[type='radio'].selection:checked").val();
 
-// 		//Đáp án
 
-// 		//Đáp án đúng
+		let formData = new FormData();
+		// let _imageDemo = $('#image_question')[0].files[0];
+		// console.log({ _imageDemo })
 
-//         if  (nameQuestion.length < 1 && answerA.length < 1 || 
-//             nameQuestion.length < 1 && answerB.length < 1 ||
-// 			nameQuestion.length < 1 && answerC.length < 1 ||
-// 			nameQuestion.length < 1 && answerD.length < 1){
-//                 return toastr['warning']('Câu hỏi và đáp án không được để trống', 'Thông báo');
+		// if(_imageDemo){
+		// 	formData.append('image', _imageDemo);
+		// }
+
+		formData.append('nameQuestion', nameQuestion);
+		formData.append('answer', answer);
+		formData.append('correct', correct);
+		formData.append('examID', examID);
+
+		//Đáp án
+
+		//Đáp án đúng
+
+        if  (nameQuestion.length < 1 && answerA.length < 1 || 
+            nameQuestion.length < 1 && answerB.length < 1 ||
+			nameQuestion.length < 1 && answerC.length < 1 ||
+			nameQuestion.length < 1 && answerD.length < 1){
+                return toastr['warning']('Câu hỏi và đáp án không được để trống', 'Thông báo');
                 
-//         } if(!correct){
-//             return toastr['warning']('Bạn chưa chọn đáp án', 'Thông báo');
+        } if(!correct){
+            return toastr['warning']('Bạn chưa chọn đáp án', 'Thông báo');
 
-//         } else{
-//             $.ajax({
-//                 url: `/question/add-question`,
-//                 method: 'POST',
-//                 data: formData,
-// 				enctype: 'multipart/form-data',
-// 				processData: false,
-//         		contentType: false,
-//                 success: resp => {
+        } else{
+            $.ajax({
+                url: `/question/add-question`,
+                method: 'POST',
+                data: formData,
+				enctype: 'multipart/form-data',
+				processData: false,
+        		contentType: false,
+                success: resp => {
 
-// 					console.log({resp})
+					console.log({resp})
 
-//                     if(!resp.error){
-// 						 let numberCountAppend = 0;
-// 						$('.list-exam-temp').append(`
-// 							<tbody>
-// 								<tr>
-// 									<td>Câu <span class="number-of-questions">${numberCountAppend + 1}</span></td>
-// 									<td style="color:black">${nameQuestion}</td>
-// 									<td>
-// 										<div class="user-panel-actions">
-// 											<a href="#"></a>
-// 											<a href="#"><i class="fas fa-pencil-alt btnEditQuestion" ></i></a>
-// 											<a href="#"></a>
-// 											<a href="#"><i class="fas fa-trash-alt btnRemoveQuestion" _examID="${examID}" _questionID=${resp.data._id}></i></a>
-// 										</div>
-// 									</td>
-// 							</tbody>
-// 						</tr>`)
+                    if(!resp.error){
+						 let numberCountAppend = 0;
+						$('.list-exam-temp').append(`
+							<tbody>
+								<tr>
+									<td>Câu <span class="number-of-questions">${numberCountAppend + 1}</span></td>
+									<td style="color:black">${nameQuestion}</td>
+									<td>
+										<div class="user-panel-actions">
+											<a href="#"></a>
+											<a href="#"><i class="fas fa-pencil-alt btnEditQuestion" ></i></a>
+											<a href="#"></a>
+											<a href="#"><i class="fas fa-trash-alt btnRemoveQuestion" _examID="${examID}" _questionID=${resp.data._id}></i></a>
+										</div>
+									</td>
+							</tbody>
+						</tr>`)
 						
-// 						//Tăng số câu hỏi 
-// 						let numberCountQuestion = $('.numberCountQuestion').text();
-// 						let formatNumberCountQuestion = parseInt(numberCountQuestion) + 1;
-// 						$('.numberCountQuestion').text(formatNumberCountQuestion);
+						//Tăng số câu hỏi 
+						let numberCountQuestion = $('.numberCountQuestion').text();
+						let formatNumberCountQuestion = parseInt(numberCountQuestion) + 1;
+						$('.numberCountQuestion').text(formatNumberCountQuestion);
 
 
-//                         toastr['success']('Thêm thành công', 'Thông báo');
+                        toastr['success']('Thêm thành công', 'Thông báo');
                         
-//                         $('#nameQuestion').val('')
-//                         $('#answerA').val('');
-//                         $('#answerB').val('');
-//                         $('#answerC').val('');
-//                         $('#answerD').val('');
+                        $('#nameQuestion').val('')
+                        $('#answerA').val('');
+                        $('#answerB').val('');
+                        $('#answerC').val('');
+                        $('#answerD').val('');
 						
-//                         $('#image_question').val('');
+                        // $('#image_question').val('');
 						
 
-//                     } else {
+                    } else {
 
-//                         return toastr['error']('Thêm thất bại', 'Thông báo');
-//                     }
-//                 },
+                        return toastr['error']('Thêm thất bại', 'Thông báo');
+                    }
+                },
 
-//                 error: err => console.log({ err })
-//             });
+                error: err => console.log({ err })
+            });
 				
-//         }
-//     })
+        }
+    })
 
-// 	//Xóa câu hỏi --------------->
-// 	$(document).on('click', '.btnRemoveQuestion', function(e) {
-// 		e.preventDefault();
-// 		let examID = $(this).attr('_examID');
-// 		let questionID = $(this).attr('_questionID');
-// 		console.log({ examID, questionID})
+	//Xóa câu hỏi --------------->
+	$(document).on('click', '.btnRemoveQuestion', function(e) {
+		e.preventDefault();
+		let examID = $(this).attr('_examID');
+		let questionID = $(this).attr('_questionID');
+		console.log({ examID, questionID})
 
-// 		if (window.confirm('Bạn có chắc chắn xóa không?')) {
-//             $.ajax({
-// 				url: `/question/remove-question/${questionID}?examID=${examID}`,
-// 				method: 'GET',
-// 				success: resp => {
+		if (window.confirm('Bạn có chắc chắn xóa không?')) {
+            $.ajax({
+				url: `/question/remove-question/${questionID}?examID=${examID}`,
+				method: 'GET',
+				success: resp => {
 
-// 					console.log({ resp })
+					console.log({ resp })
 
-// 					if(!resp.error){
+					if(!resp.error){
 
-// 						$(this).closest("tr").remove();
-// 						return toastr['success']('Xóa thành công', 'Thông báo');
+						$(this).closest("tr").remove();
+						return toastr['success']('Xóa thành công', 'Thông báo');
 
-// 					}else{
+					}else{
 
-// 						return toastr['error']('Xóa thất bại', 'Thông báo');
-// 					}
-// 				},
-// 				error: err => console.log({ err })
-// 			});
-//         }
-//     })
+						return toastr['error']('Xóa thất bại', 'Thông báo');
+					}
+				},
+				error: err => console.log({ err })
+			});
+        }
+    })
 
-// 	//Lấy ID truyền vào button xem trước --------------->
-// 	$(document).on('change', '.onChangeExam', function() {
-// 		let examID = $('#examID').val();
-// 		let hrefExam = $('.hrefExam').attr('_examID', examID)
-// 	})
+	//Lấy ID truyền vào button xem trước --------------->
+	$(document).on('change', '.onChangeExam', function() {
+		let examID = $('#examID').val();
+		let hrefExam = $('.hrefExam').attr('_examID', examID)
+	})
 
-// 	//Sự kiện chuyển đến trang trắc nghiệm --------------->
-// 	$(document).on('click', '.hrefExam', function(e) {
-// 		e.preventDefault();
-// 		let examID = $(this).attr('_examID');
+	//Sự kiện chuyển đến trang trắc nghiệm --------------->
+	$(document).on('click', '.hrefExam', function(e) {
+		e.preventDefault();
+		let examID = $(this).attr('_examID');
 
-// 		if(!examID){
+		if(!examID){
 
-// 			return toastr['warning']('Bạn chưa chọn bộ đề muốn xem', 'Thông báo');
+			return toastr['warning']('Bạn chưa chọn bộ đề muốn xem', 'Thông báo');
 
-// 		} else {
+		} else {
 			
-// 			let _urlTemp = `/test-exam?examID=${examID}`
-// 			window.open(_urlTemp, '_blank');
+			let _urlTemp = `/test-exam?examID=${examID}`
+			window.open(_urlTemp, '_blank');
 
-// 		}
-// 	})
+		}
+	})
 
-// </script>
+</script>

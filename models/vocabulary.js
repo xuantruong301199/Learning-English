@@ -3,23 +3,18 @@ const VOCABULARY_COLL = require('../databases/vocabulary-coll');
 
 module.exports = class vocabulary extends VOCABULARY_COLL {
 
-    static insert ({english, image, tiengvietese, sound}){
+    static insert ({english, image, tiengvietese, spelling, unit}){
         return new Promise(async resolve => {
             try {
-                // if(!image)
-                // return resolve({error: true, message: 'Khong hop le'});
+                if(!ObjectID.isValid(unit))
+                return resolve({error: true, message: 'params_invalid'});
 
-                // let checkExist = await VOCABULARY_COLL.findOne({image});
-                // if (checkExist)
-                // return resolve ({ error: true, message: 'hình ảnh của từ vựng đã tồn tại'});
-
-                let infoInsert = new VOCABULARY_COLL({english, image, tiengvietese, sound});
+                let infoInsert = new VOCABULARY_COLL({ english, image, tiengvietese, spelling, unit});
                 
                 let saveDataInsert = await infoInsert.save();
 
                 if (!saveDataInsert)
                 return resolve({error: true, message:' Khong the them '});
-                console.log({english, image, tiengvietese, sound});
 
                 return resolve({ error: false, data: infoInsert});
                 
@@ -29,14 +24,16 @@ module.exports = class vocabulary extends VOCABULARY_COLL {
         });
     };
 
-    static getList () {
+    static getList ({ unitID }) {
         return new Promise(async resolve => {
             try {
-                let listVocab = await VOCABULARY_COLL.find();
-                if(!listVocab)
-                return resolve({error: true, message: ' Khong hop le'});
 
-                return resolve ({ error: false, data: listVocab});
+                let listVocab = await VOCABULARY_COLL.find({ unit: unitID });
+
+                if(!listVocab)
+                return resolve({error: true, message: 'fail'});
+
+                return resolve ({ error: false, data: listVocab });
             
             } catch (error) {
                 return resolve({error: true, message: error.message});
@@ -60,13 +57,13 @@ module.exports = class vocabulary extends VOCABULARY_COLL {
         });
     }
     //Sửa thông tin từ vựng
-    static Update({vocabID, english, image, tiengvietese, sound}) {
+    static Update({numerical, vocabID, english, image, tiengvietese}) {
         return new Promise(async resolve => {
             try {
                 if (!ObjectID.isValid(vocabID))
                 return resolve({ error: true, message: 'khong hop le' });
                 let dataUpdate ={
-                    english, image, tiengvietese, sound
+                    numerical,english, image, tiengvietese, spelling
                 }
                 // if(file){
                 //     dataUpdate.file = file;

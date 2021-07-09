@@ -1,21 +1,31 @@
 const route         = require('express').Router();
 const COURSE_MODEL = require('../models/course');
+const UNIT_MODEL = require('../models/unit');
+const { renderToView } = require('../utils/renderToView');
 
 //Thêm khóa học
 // route.get('/insert-course', async (res,req) => {
 //     renderToView(req, res, 'pages/insert-course',{ })
 // })
 
-route.post('/insert-course', async (req, res) =>{
-    let {name, image, description} = req.body;
-    let infoAfterInsert = await COURSE_MODEL.insert({name, image, description});
-    return res.json(infoAfterInsert); 
+route.post('/insert-course', async (req, res) => {
+    let { name, image, description } = req.body;
+    
+    let infoAfterInsert = await COURSE_MODEL.insert({ name, image, description });
+    console.log(infoAfterInsert);
+    return res.json(infoAfterInsert);
+});
 
-})
+route.get('/detail', async function (req, res) {
+    let { courseID } = req.query;
+    let listUnit = await UNIT_MODEL.getList({ courseID });
+    let infoCourse = await COURSE_MODEL.getInfo({ courseID });
+    renderToView(req, res, "pages/course", { infoCourse: infoCourse.data, listUnit:listUnit.data});
+});
+
 route.get('/info-course/:courseID', async (req, res) => {
     let{ courseID } = req.params;
-    console.log({ courseID });
-    let infoCourse = await COURSE_MODEL.getInfo({courseID});
+    let infoCourse = await COURSE_MODEL.getInfo ({courseID});
     return res.json(infoCourse);
 });
 
