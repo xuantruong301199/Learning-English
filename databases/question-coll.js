@@ -18,7 +18,9 @@ const QuestionSchema = new Schema({
         ref: "exam",
     
     },
-    
+    point: String,
+
+    correct: Number,
     //Ngày tạo
     dateCreate:{
         type: Date,
@@ -26,9 +28,9 @@ const QuestionSchema = new Schema({
     }, 
 
     //Người tạo
-    owner:{
+    author: {
         type: Schema.Types.ObjectId,
-        ref: "user"
+        ref : "user"
     },
 
 });

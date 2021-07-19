@@ -6,21 +6,21 @@ const ExamSchema = new Schema({
     name: String,
 
     //Bài 
-    unit:{
+    course: {
         type: Schema.Types.ObjectId,
-        ref: "unit"
+        ref: "course"
     },
     //Câu hỏi
     question: String,
 
     //Ngày tạo
-    dateCreate:{
+    dateCreate: {
         type: Date,
         default: Date.now()
-    }, 
+    },
 
     //Người tạo
-    owner:{
+    owner: {
         type: Schema.Types.ObjectId,
         ref: "user"
     },
@@ -29,5 +29,5 @@ const ExamSchema = new Schema({
 
 });
 
-const EXAM_MODEL = mongoose.model('exam',ExamSchema);
+const EXAM_MODEL = mongoose.model('exam', ExamSchema);
 module.exports = EXAM_MODEL;

@@ -1,128 +1,7 @@
-	<%- include ('../dashboard/header') %>
+
 	<%- include ('../dashboard/header') %>
 	<%- include('../dashboard/sidebar') %>
-		<header class="header">
-			<ul class="header-nav">
-				<li>
-					<button id="js-toggle-sidebar" class="header-nav-item">
-						<i class="fas fa-bars"></i>
-					</button>
-				</li>
-			</ul>
-			<ul class="header-nav d-none d-sm-flex">
-				<li>
-					<a href="/" class="header-nav-item">Trang chủ</a>
-					
-				</li>
-				<li>
-					<a href="#" data-dropdown class="header-nav-item">Liên hệ</a>
-					<ul class="dropdown-menu">
-						<li><a class="dropdown-item" target="_blank" href="https://www.facebook.com/TOTHANHDAT.TTD">Facebook</a></li>
-						<li><a class="dropdown-item" target="_blank" href="https://www.messenger.com/t/TOTHANHDAT.TTD">Messenger</a></li>
-						<li><a class="dropdown-item" href="">Email: lttn.py@gmail.com</a></li>
-					</ul>
-				</li>
-			</ul>
-			
-			<ul class="header-nav pull-right">
-				<li>
-					<a href="#" data-dropdown class="header-nav-item">
-						<i class="far fa-envelope"></i>
-						<span class="badge badge-pill badge-success">2</span>
-					</a>
-					<ul class="dropdown-menu px-20 py-10">
-						<li class="message">
-							<div class="avatar avatar-sm">
-								<img src="../dashboard/images/avatar-3.jpg" alt="">
-							</div>
-							<div class="message-content">
-								<div class="message-bubble">
-									<p>Hello, John!</p>
-								</div>
-								<small class="text-secondary text-sm">Today, 10:31</small>
-							</div>
-							<div class="message-actions">
-								<button><i class="far fa-trash-alt"></i></button>
-								<button><i class="far fa-flag"></i></button>
-							</div>
-						</li>
-						<li class="message">
-							<div class="avatar avatar-sm">
-								<img src="../dashboard/images/avatar-3.jpg" alt="">
-							</div>
-							<div class="message-content">
-								<div class="message-bubble">
-									<p>What about our project?</p>
-								</div>
-								<small class="text-secondary text-sm">Today, 10:32</small>
-							</div>
-							<div class="message-actions">
-								<button><i class="far fa-trash-alt"></i></button>
-								<button><i class="far fa-flag"></i></button>
-							</div>
-						</li>
-					</ul>
-				</li>
-				<li>
-					<a href="#" data-dropdown class="header-nav-item">
-						<i class="far fa-bell"></i>
-						<span class="badge badge-pill badge-primary">3</span>
-					</a>
-					<ul class="dropdown-menu px-20 py-10">
-						<li class="event-column event-column-success">
-							<div class="event-content">
-								<small class="text-secondary"><i class="far fa-envelope"></i> From example@gmail.com</small>
-								<p><a href="#">Alex White</a> sent you an email.</p>
-							</div>
-							<small class="text-secondary pull-right">1 hr.</small>
-						</li>
-						<li class="event-column event-column-primary">
-							<div class="event-content">
-								<small class="text-secondary"><i class="fas fa-thumbtack"></i> New task</small>
-								<p><b>To <a href="#">John Doe</a>: new API methods.</b></p>
-								<p class="text-secondary text-sm">Implement new API methods for mobile app.</p>
-							</div>
-							<small class="text-secondary pull-right">7 min.</small>
-						</li>
-						<li class="event-column event-column-secondary">
-							<div class="event-content">
-								<small class="text-secondary"><i class="far fa-bell"></i> Notification</small>
-								<p><a href="#">Alex White</a> joined to project</p>
-							</div>
-							<small class="text-secondary pull-right">now</small>
-						</li>
-					</ul>
-				</li>
-				<li>
-					<a href="#" id="js-enter-fullscreen" class="header-nav-item">
-						<i class="fas fa-expand-arrows-alt"></i>
-					</a>
-				</li>
-				<li>
-					<a href="#" data-dropdown class="user-panel">
-						<div class="user-panel-image">
-							<div class="avatar avatar-sm">
-								<img src="../dashboard/images/avatar-0.jpg" alt="">
-							</div>
-						</div>
-						<div class="user-panel-info">
-							<small>Xin chào</small>
-							<p>Admin</p>
-						</div>
-					</a>
-					<ul class="dropdown-menu">
-						<li><a class="dropdown-item" href="page-profile.html"><i class="far fa-user"></i> Profile</a></li>
-						<li class="dropdown-divider"></li>
-						<li><a class="dropdown-item" href="/logout"><i class="fas fa-power-off"></i> Logout</a></li>
-					</ul>
-				</li>
-			</ul>
-		</header>
-		<main class="content">
-			<div class="container-fluid">
-				<div class="content-header content-header-scene">
-					<h1>LTTN Trang chủ <small>Đăng nhập lần cuối: 03:00 21, July</small></h1>
-				</div>
+	
 <main class="content">
 	<div class="container-fluid">
 		<div class="content-header">
@@ -151,11 +30,11 @@
 						
 						<div class="form-group row">
 							<div class="col-9 offset-3">
-								<select id="unitID" required class="form-control">
-									<option value>Chọn Unit</option>
-									<% if (listUnit && listUnit.length) { %>
-										<% listUnit.forEach(unit => { %>
-											<option value="<%=unit._id%>"><%=unit.name%></option>
+								<select id="courseID" required class="form-control">
+									<option value>Chọn khóa học</option>
+									<% if (listCourse && listCourse.length) { %>
+										<% listCourse.forEach(course => { %>
+											<option value="<%=course._id%>"><%=course.name%></option>
 										<% }) %>
 									<% } %>
 										
@@ -195,7 +74,7 @@
 									<tr>
 										<td><%=exam.name%></td> <!--Tên bộ đề-->
 
-											<% listUnit.forEach(unit => { %>
+											<% listCourse.forEach(course => { %>
 												
 											<% }) %>
 
@@ -223,76 +102,53 @@
 	<%- include ('../dashboard/footer') %>
 
 <script>
-    
 	//Thêm bộ đề -------------->
     $(document).on('click', '.btnCreateExam', function(e) {
 		
 		e.preventDefault();
 		let examID = $(this).attr('_examID');
-
-		console.log(examID)
-
 		let name        = $('#nameExam').val().trim();
 		// let description = $('#descriptionExam').val().trim();
 		// let level       = $('#level').val();
 		// let subjectID   = $('#subjectID').val();
-		let unitID		= $('#unitID').val();
-
+		let courseID		= $('#courseID').val();
 		if(!examID){
-
-			console.log({ name, unitID})
-
-			if(name.length < 1 ||  unitID.length < 1){
-
+			console.log({ name, courseID})
+			if(name.length < 1 ||  courseID.length < 1){
 				return toastr['error']('Chưa nhập đủ trường', 'Thông báo');
-
 			} else{
 				$.ajax({
 					url: `/exam/add-exam`,
 					method: 'POST',
-					data: { name, unitID},
+					data: { name, courseID},
 					success: resp => {
-
 						console.log({ resp })
-						
 						if(!resp.error){
-
 							toastr['success']('Thêm thành công', 'Thông báo');
-							window.location.reload();
-
+							
 						}else{
-
 							return toastr['error']('Thêm thất bại', 'Thông báo');
 						}
 					},
 					error: err => console.log({ err })
 				});
 			}
-
 		} else {
-
-			console.log({name, unitID})
-			if(name.length < 1 ||  unitID.length < 1){
-
+			console.log({name, courseID})
+			if(name.length < 1 ||  courseID.length < 1){
 				return toastr['error']('Chưa nhập đủ trường', 'Thông báo');
-
 			} else{
 				$.ajax({
 					url: `/exam/update-exam/${examID}`,
 					method: 'POST',
-					data: { name, unitID },
+					data: { name, courseID },
 					success: resp => {
-
 						console.log({ resp })
-						
 						if(!resp.error){
-
 							//toastr['success']('Cập nhật thành công', 'Thông báo');
 							alert(`Cập nhật thành công`)
 							window.location.reload();
-
 						}else{
-
 							return toastr['error']('Cập nhật thất bại', 'Thông báo');
 						}
 					},
@@ -300,9 +156,7 @@
 				});
 			}
 		}
-
     })
-
 	//Xóa bộ đề --------------->
 	$(document).on('click', '.btnRemoveExam', function(e) {
 
@@ -313,14 +167,10 @@
 				url: `/exam/remove-exam/${examID}`,
 				method: 'GET',
 				success: resp => {
-
 					if(!resp.error){
-
 						$(this).closest("tr").remove();
 						return toastr['success']('Xóa thành công', 'Thông báo');
-
 					}else{
-
 						return toastr['error']('Xóa thất bại', 'Thông báo');
 					}
 				},
@@ -328,38 +178,25 @@
 			});
         }
     })
-
 	//Truyền data cập nhật ------------>
 	$(document).on('click', '.btnEditExam', function () {
-
         let examID = $(this).attr('_examID');
-		
 		if(examID && examID.length){
 			$.ajax({
 				url: `/exam/info-exam/${examID}`,
 				method: 'GET',
 				success: resp => {
-
 					console.log({ resp })
-
 					let { _id: id, name, description, level, subjects: subjectID} = resp.data
-
-					console.log({ id, name, description, level, subjectID })
-					
 					if(!resp.error){
 						$('#nameExam').val(name);
 						$('#descriptionExam').val(description);
-						
 						$('#level').val(level);
 						$('#level').trigger('change');
-
 						$('#subjectID').val(subjectID._id);
 						$('#subjectID').trigger('change');
-
 						$('.btnCreateExam').attr('_examID', id);
-
 					} else {
-
 						return toastr['error']('Thất bại', 'Thông báo');
 					}
 				},
@@ -367,5 +204,4 @@
 			});
 		}
 	});
-
 </script>

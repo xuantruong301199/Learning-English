@@ -4,43 +4,33 @@ const Schema = mongoose.Schema;
 
 const ResultSchema = new Schema({
 
-    //Người dùng 
-    user:{
+    falseArr: [{
         type: Schema.Types.ObjectId,
-        ref: "user"
+        ref : "question",
+        default: [],
+    }],
+
+    trueArr: [{
+        type: Schema.Types.ObjectId,
+        ref : "question",
+        default: [],
+    }],
+
+    author: {
+        type: Schema.Types.ObjectId,
+        ref : "user"
     },
-    //bộ đề
+
     exam: {
         type: Schema.Types.ObjectId,
         ref : "exam"
     },
+
+    unfinishQuestion: String,
+
+    createAt: { type: Date, required: true, default: Date.now } ,
     //Điểm số
-    point: Number,
-
-    //Câu trả lời đúng, câu trả lời sai
-    // questionTrue: Number,
-
-    // questionFalse: Number,
-    //câu trả lời đúng 
-    answerRight: Number,
-
-
-    //Nhận xét
-    comment: ObjectID,
-
-    //Ngày tạo
-    dateCreate:{
-        type: Date,
-        default: Date.now()
-    }, 
-
-    //Người tạo
-    owner:{
-        type: Schema.Types.ObjectId,
-        ref: "user"
-    },
-
-
+    point: String,
     
 });
 

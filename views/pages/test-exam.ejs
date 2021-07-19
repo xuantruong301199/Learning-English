@@ -1,0 +1,225 @@
+<%- include ('../partials/header') %>
+<div class="container-fluid" id="body">
+    <div class="row" id="test">
+        <div class="col-sm-16 col-md-18">
+            <div id="breadcrumbs_mobile" class="col-xs-24 col-sm-24 box-coll hidden-lg hiddent-md ">
+                <div class="col-xs-20 col-sm-20 title"></div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="detail view-list">
+                <div class="panel panel-default result_width edit_panel" data-spy="affix" data-offset-top="250">
+                    <!--         <div class="panel-heading">Thông tin đề thi</div> -->
+                    <div class="panel-body edit_panel">
+                        <h1 class="m-bottom affix_hidden">&#91;MIỄN PHÍ&#93;  <%=infoExam.name%>:  <%=infoExam.description%></h1>
+                        <div class="row">
+                            <div class="col-lg-8 col-xs-16 col-sm-12 col-md-8 affix_hidden">
+                                <div class="row exam-info">
+                                    <div class="col-xs-24 col-sm-12 col-md-8">
+                                        <label>Số câu</label>:<%=listQuestion.length%>
+                                    </div>
+                                    <div class="col-xs-24 col-sm-12 col-md-24">
+                                        <label>Thời gian</label>: Không giới hạn thời gian
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-8 col-xs-10 col-sm-24 col-md-8 text-center" style="position: absolute; right: 0;">
+                                <button type="submit" name="submit" class="btn btn-success btnSendTest">
+                                    <em class="fa fa-floppy-o">&nbsp;</em>Nộp bài
+                                </button>
+                                &nbsp; <a href="/" class="cancelLink"> Thoát </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <div>
+                </div>
+                <div class="testing m-bottom get_width" id="top">
+                    <form action="" method="post" id="frm-submit" class="col-xs-24 col-sm-24 col-md-24">
+                        <input type="hidden" value="1" name="save_test"/>
+                        <input type="hidden" value="47" name="exam_id"/>
+                        <input type='hidden' id='current_page'/>
+                        <input type='hidden' id='show_per_page'/>
+                        <div id="namelist" data-exam-id="47">
+                         <% for(let i=0; i < listQuestion.length; i++) {%>
+                            <div class="question-box">
+                                <div class="panel panel-default question-item " data-question-number="1">
+                                    <div class="panel-body" id="question<%=i+1%>">
+                                        <p class="m-bottom question">
+                                            <strong class="text-red questionOfExam"_examID = "<%=infoExam._id%>">Câu hỏi <%=i+1%>:</strong><b><span lang="VI" style="font-size:12.0pt">
+                                            <span style="line-height:107%"><span>
+                                                <%-listQuestion[i].name%></span></span></span></b>
+                                        </p>
+                                        <% if (listQuestion[i].image) { %>
+                                       <div class="panel panel-default get_width">
+                                                <div class="panel-body">
+                                                    <div class="text-center imgposition">
+                                                        <img width="400" height="auto" src="../storage/images/<%=listQuestion[i].image%>" alt="<%=listQuestion[i].image%>">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        <% } %>
+                                        <div class="row answer">
+                                        <% for(let j=0; j < listQuestion[i].answer.length; j++) {%>
+                                            <div class="answer-item col-xs-12 col-sm-12 col-md-12">
+                                                <label class="radio_question" >
+                                                    <input class="hidden-print selection chooseAnswer" _numberQus="<%= i + 1%>"  name="answer<%=i + 1%>" type="radio" _question="<%=listQuestion[i]._id%>" value="<%=j+1%>" /> <%-String.fromCharCode(65 + j)%>. <%=listQuestion[i].answer[j]%>.
+                                                </label>
+                                            </div>
+                                        <% } %>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <% } %>
+                        </div>
+                    </form>
+                    <div class="clearfix"></div>
+                    <% if (listQuestion.length) { %>
+                    <div class="text-center">
+                        <button type="submit" name="submit" class="btn btn-success btnSendTest">
+                            <em class="fa fa-floppy-o">&nbsp;</em>Nộp bài
+                        </button>
+                        &nbsp; <a href="" class="cancelLink"> Thoát </a>
+                    </div>
+                    <% } else {%>
+                    <h2 style="text-align: center;">Hiện tại chưa có câu hỏi nào</h2>
+                    <%}%>
+                </div>
+            </div>
+        </div>
+<%- include ('../partials/sidebar') %>
+<%- include ('../partials/footer') %>
+
+<script>
+    $(document).on('click', '.btnSendTest', function (e) {
+		e.preventDefault();
+        let examID = $('.questionOfExam').attr('_examID');
+
+        let correctNumber = 0;
+        let unfinishQuestion;
+        let falseArr = [];
+        let trueArr = [];
+        let point;
+		console.log({examID, correctNumber, unfinishQuestion, falseArr, trueArr, point})
+		if(examID){
+                $.ajax({
+                    url: `/exam/info-exam/${examID}`,
+                    method: 'GET',
+                    success: resp => {
+                        if(!resp.error){
+                            let infoExam = resp.data;
+                                for(let j=0; j < listQuestion.length; j++){
+                                    for(let i=0 ; i < arrResult.length; i++){
+                                    //Câu trả lời sai
+                                    if(arrResult[i].questionID == listQuestion[j]._id && arrResult[i].correct.toString() !== listQuestion[j].correct.toString()){
+                                        falseArr.push(arrResult[i].questionID)
+                                    }
+
+                                    //Câu trả lời đúng
+                                    if(arrResult[i].questionID == listQuestion[j]._id && arrResult[i].correct.toString() == listQuestion[j].correct.toString()){
+                                        correctNumber += 1;
+                                        trueArr.push(arrResult[i].questionID)
+                                    }
+
+                                    unfinishQuestion = listQuestion.length - arrResult.length;
+
+                                }
+                            }
+
+                            //let dontCompleteNumber = listQuestion.length - arrResult.length;
+
+                            // console.log(`Số câu sai: ${falseNumber}`);
+
+                            //console.log(`Sô câu chưa làm: ${unfinishQuestion}`);
+
+                            //console.log(`Những câu sai: ${falseArr}`);
+
+                            //console.log(`Những câu đúng: ${trueArr}`);
+
+
+                            point = (10/listQuestion.length)*correctNumber;
+                            //console.log(`Điểm của bạn là: ${point}`);
+
+
+                            //console.log(falseArr, trueArr, point)
+                        if(unfinishQuestion > 0){
+
+                            if (window.confirm(`Bạn có ${unfinishQuestion} câu chưa làm. Bạn có chắc chắn nộp bài không?`)) {
+                                if(falseArr.length || trueArr.length){
+                                    $.ajax({
+                                    url: `/result-exam`,
+                                    method: 'POST',
+                                    data: { point, falseArr, trueArr, examID, unfinishQuestion },
+                                    success: resp => {
+
+                                        let resultID = resp.data._id;
+                                        
+                                        console.log(resp)
+
+                                        if(!resp.error){
+
+                                            window.location.href = `/result-exam`
+                                        }
+                                    },
+                                    error: err => console.log({ err })
+                                    });
+
+                                }
+                            }
+
+                        } else {
+
+                            if (window.confirm(`Bạn có chắc chắn nộp bài không?`)) {
+                                if(falseArr.length || trueArr.length){
+                                    $.ajax({
+                                    url: `/result-exam`,
+                                    method: 'POST',
+                                    data: { point, falseArr, trueArr, examID, unfinishQuestion },
+                                    success: resp => {
+
+                                        let resultID = resp.data._id;
+                                        
+                                        console.log(resp)
+
+                                        if(!resp.error){
+
+                                            window.location.href = `/result-exam?resultID=${resultID}&examID=${examID}`
+                                        }
+                                    },
+                                    error: err => console.log({ err })
+                                    });
+
+                                }
+                            }
+
+                        }
+                            
+                        }
+                        
+                    },
+                    error: err => console.log({ err })
+                });
+
+		}
+
+	});
+
+    let arrResult = [];
+    $(`.chooseAnswer`).on('change', function() {
+        let questionID = $(this).attr('_question');
+        let numberQus = $(this).attr('_numberQus');
+        let correct =  $(`input[name="answer${numberQus}"]:checked`).val();
+
+        if(questionID && correct){
+            for (var i =0; i < arrResult.length; i++){
+                if (arrResult[i].questionID === questionID) {
+                    arrResult.splice(i,1);
+                    break;
+                }
+            }
+            arrResult.push({ questionID, correct })
+            console.log(arrResult)
+        }
+    });
+
+</script>

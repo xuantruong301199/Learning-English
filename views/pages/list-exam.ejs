@@ -125,159 +125,143 @@
 				</div>
 		<br>
 		<div class="box">
-            <form class="input-group">
-                <button type="submit"><div class="input-group-icon btnSearch"><i class="fas fa-search"></i></div></button>
-                <input id="input-search" autocomplete="off" type="text" class="form-control" placeholder="Tìm kiếm bộ đề...">
-            </form>
+           
 		<div class="box-header">
-				<h3 >Danh sách Bộ đề</h3>
-				<div class="box-actions">
-					<a href="#" class="box-actions-item">Link</a>
-					<button class="box-actions-item">Điểm tăng dần <i class="fas fa-sort-alpha-up"></i></button>
-					<button class="box-actions-item"><i class="fas fa-minus"></i></button>
-					<button class="box-actions-item"><i class="fas fa-times"></i></button>
-				</div>
-			</div>
-			<div>
-			<div>
-				
-			</div>
-				<div class="col-sm-5">
-				</div>
-			<div class="table-responsive">
-				<table class="table table-result">
-					<thead>
-						<tr>
-							<th>Tên đề kiểm tra</th>
-							<th>Môn học</th>
-							<th>Lớp</th>
-							<th>Người tạo</th>
-							<th>Số câu hỏi</th>
-							<th>Kết quả</th>
-						</tr>
-					</thead>
-					<tbody>
-                       
-                            
-                            <tr>
-                                <td><a href="/info-exam?examID=5ee5f79dfa430106f4296452"><span></span> Đề hóa học hữu cơ nâng cao cho học sinh lớp 12</a></td>
-                                <td><span></span> Hóa học</td>
-
-                                
-									
-								
-									
-								
-									
-								
-									
-								
-									
-										<td>12</td>
-									
-								
-
-                                <td><span></span> Admin</td>
-                                <td><span></span> 5</td>
-                                <td><span></span> 6</td>
-                                <td>
-                                    <a href="#" class="icon text-black-25"><i class="fas fa-ellipsis-v"></i></a>
-                                </td>
-								</tr>
-                           
-				        
-					</tbody>
-				</table>
-			</div>
-            <hr>
-                <p style="margin-left: 15px">Nhấp vào tên bộ đề để xem chi tiết</p>
-		    </div>
-
-		<div class="box">
-			<div class="box-header">
-				<h3>Weekly Recap Report</h3>
-			</div>
-			<div class="box-body">
-				<div class="row">
-					<div class="col-md-8">
-						<canvas class="chart" id="areaChartJs"></canvas>
+			<div class="box col-lg-9">
+					<div class="box-header">
+						<h3 >Danh sách bộ đề</h3>
 					</div>
-					<div class="col-md-4">
-						<h3>Goals</h3>
-						<div class="d-block mb-20">
-							<div class="d-flex justify-content-between">
-								<p class="mb-0">Complete Purchase</p>
-								<p class="mb-0 text-secondary"><b>47/50</b></p>
-							</div>
-							<div id="barChart1"></div>
+					<div class="box-body">
+						<div class="table-responsive">
+							<table class="table table-noborder list-exam-temp">
+								<tbody>
+									<tr>
+										<th>Bộ đề</th>
+									</tr>
+									 <% if (listExam && listExam.length) { %>
+                            				<% listExam.forEach(exam => {  %>
+										  <tr>
+										  <td><a href="/begin-exam?examID=<%=exam._id%>"><span></span><%=exam.name%></a></td>
+										<td><%=exam.name%></td> <!--Tên bộ đề-->
+											<% listExam.forEach(exam => { %>
+											<% }) %>
+										<td>
+											<div class="user-panel-actions">
+												<a href="#"></a>
+												<button type="button" class="btnEditExam" _examID="<%=exam._id%>" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Thay đổi</button>
+												<a href="#"></a>
+												<a href="#"><i class="fas fa-trash-alt btnRemoveExam" _examID="<%=exam._id%>"></i></a>
+											</div>
+										</td>
+									</tr>
+										 <% }) %>
+									<% } %>
+								</tbody>
+							</table>
 						</div>
-
-						<div class="d-block mb-20">
-							<div class="d-flex justify-content-between">
-								<p class="mb-0">Add Product to Favorite</p>
-								<p class="mb-0 text-secondary"><b>25/50</b></p>
-							</div>
-							<div id="barChart2"></div>
-						</div>
-
-						<div class="d-block mb-25">
-							<div class="d-flex justify-content-between">
-								<p class="mb-0">Add product to favorite</p>
-								<p class="mb-0 text-secondary"><b>12/50</b></p>
-							</div>
-							<div id="barChart3"></div>
-						</div>
-
-						<div class="row text-center">
-							<div class="col-4">
-								<div class="chart-circle" id="circleChart1"></div>
-								<p>Mail orders</p>
-							</div>
-							<div class="col-4">
-								<div id="circleChart2"></div>
-								<p>Online</p>
-							</div>
-							<div class="col-4">
-								<div id="circleChart3"></div>
-								<p>In store</p>
-							</div>
-						</div>
+					</div>
+					<div class="box-footer">
+						<p style="margin-left: 15px">Nhấp vào tên bộ đề để xem chi tiết</p>
+						
 					</div>
 				</div>
 			</div>
-		</div>
+		
 	</div>
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Thay đổi</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+         
+          <div class="form-group">
+            <label for="message-text" class="col-form-label">Message:</label>
+            <textarea class="form-control" id="message-text"></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Send message</button>
+      </div>
+    </div>
+  </div>
+</div>
 </main>
-<footer class="footer">
-			<p >LTTN.PY © 2020 Được phát triển bởi Tô Thành Đạt.</p>
-		</footer>
-	</div>
 
-	<script src="../dashboard/assets/js/app.js"></script>
+<%- include('../dashboard/footer') %>
+<script>
+$(document).on('click', '.btnRemoveExam', function(e) {
+		e.preventDefault();
+		let examID = $(this).attr('_examID');
+		
+		console.log({ examID})
 
-	<!-- <script src="https://cdn.ckeditor.com/4.10.1/standard/ckeditor.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-	<script src="https://code.jquery.com/jquery-3.2.1.min.js" ></script> -->
-	<script src="../lttnpy_core/scripts/jquery-3.2.1.min.js" type="text/javascript"></script>
-	<script src="../lttnpy_core/scripts/select2.min.js" type="text/javascript"></script>
-	<script src="../lttnpy_core/scripts/bootstrap.min.js" type="text/javascript"></script>
-	<script src="../lttnpy_core/slick/slick.js" type="text/javascript" charset="utf-8"></script>
-	<script src="../lttnpy_core/scripts/caret.js" type="text/javascript"></script>
-	<script src="../lttnpy_core/scripts/emojiPicker.min.js"></script>
-	<script src="../lttnpy_core/scripts/main.js" type="text/javascript"></script>
-	<script src="../lttnpy_core/scripts/lodash.min.js" type="text/javascript"></script>
-	<script src="../lttnpy_core/scripts/moment.min.js" type="text/javascript"></script>
-	<script src="../lttnpy_core/scripts/moment-with-locales.min.js" type="text/javascript"></script>
-	<script src="../lttnpy_core/toastr/toastr.min.js" type="text/javascript"></script>
-	<script src="../lttnpy_core/scripts/quill.min.js"></script>
-	<script src="../lttnpy_core/scripts/fullcalendar.min.js" type="text/javascript"></script>
-	<script src="../lttnpy_core/scripts/jquery-ui-full.js" type="text/javascript"></script>
-	<script src="../lttnpy_core/scripts/jquery.timepicker.min.js" type="text/javascript"></script>
-	<script src="https://cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>
+		if (window.confirm('Bạn có chắc chắn xóa không?')) {
+            $.ajax({
+				url: `/exam/remove-exam/?examID=${examID}`,
+				method: 'GET',
+				success: resp => {
 
-	
-</body>
-</html>
+					console.log({ resp })
 
+					if(!resp.error){
+
+						$(this).closest("tr").remove();
+						return toastr['success']('Xóa thành công', 'Thông báo');
+
+					}else{
+
+						return toastr['error']('Xóa thất bại', 'Thông báo');
+					}
+				},
+				error: err => console.log({ err })
+			});
+        }
+    })
+	$(document).on('click', '.btnEditExam', function () {
+
+        let examID = $(this).attr('_examID');
+		
+		if(examID && examID.length){
+			$.ajax({
+				url: `/exam/info-exam/${examID}`,
+				method: 'GET',
+				success: resp => {
+
+					console.log({ resp })
+
+					let { _id: id, name, description, level, subjects: subjectID} = resp.data
+
+					console.log({ id, name, description, level, subjectID })
+					
+					if(!resp.error){
+						$('#nameExam').val(name);
+						$('#descriptionExam').val(description);
+						
+						$('#level').val(level);
+						$('#level').trigger('change');
+
+						$('#subjectID').val(subjectID._id);
+						$('#subjectID').trigger('change');
+
+						$('.btnCreateExam').attr('_examID', id);
+
+					} else {
+
+						return toastr['error']('Thất bại', 'Thông báo');
+					}
+				},
+				error: err => console.log({ err })
+			});
+		}
+	});
+</script>

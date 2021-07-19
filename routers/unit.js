@@ -1,6 +1,5 @@
 const route = require('express').Router();
 const UNIT_MODEL = require('../models/unit');
-// const COURSE_MODEL = require('../models/course')
 const VOCABULARY_MODEL = require('../models/vocabulary')
 const { renderToView } = require('../utils/renderToView');
 

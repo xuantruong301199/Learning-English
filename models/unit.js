@@ -6,7 +6,6 @@ module.exports = class unit extends UNIT_COLL {
     static insert({ name, image, course }) {
         return new Promise(async resolve => {
             try {
-
                 if (!name && !ObjectID.isValid(course))
                     return resolve({ error: true, message: 'Khong hop le' });
                 

@@ -6,52 +6,11 @@
         </div>
         <div class="clearfix"></div>
         <div class="detail view-list">
-            <div class="panel panel-default result_width edit_panel">
-                <!--         <div class="panel-heading">Thông tin đề thi</div> -->
-                <div class="panel-body edit_panel">
-                    <h1 class="m-bottom affix_hidden">[MIỄN PHÍ] Đề hóa học hữu cơ nâng cao cho học sinh lớp 12: [Hóa học] Các em lưu ý chỉ có 60 phút làm bài</h1>
-                    <div class="row">
-                        <div class="col-lg-12 col-xs-24 col-sm-24 col-md-12 affix_hidden">
-                            <div class="row exam-info">
-                                <div class="col-xs-24 col-sm-12 col-md-8">
-                                    <label>Số câu</label>: 5
-                                </div>
-                                <div class="col-xs-24 col-sm-12 col-md-16">
-                                    <label>Thời gian</label>: Không giới hạn
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-12 col-xs-24 col-sm-12 col-md-12 text-center">
-                            <div class="col-lg-12 col-xs-12 col-sm-12 col-md-8 text-right">
-                                <a href="/luu">
-                                <button class="btn btn-success col-lg-24 col-xs-24" id="btn-save" style="margin-top: 5px;">Lưu đề thi</button>
-                                </a>
-                            </div>
-                            <div class="col-lg-12 col-xs-12 col-sm-12 col-md-8 text-left m-bottom">
-                                <a href="/test-exam?examID=5ee5f79dfa430106f4296452">
-                                    <button class="btn btn-primary col-lg-24 col-xs-24" id="btn-start" _examid="5ee5f79dfa430106f4296452" style="margin-top: 5px;">Bắt đầu làm bài
-                                    </button>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="col-lg-8 col-xs-10 col-sm-24 col-md-8 text-center" style="position: absolute; right: 0;">
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="panel panel-default get_width">
-                <div class="panel-body">
-                    <em>Đề hóa học hữu cơ nâng cao cho học sinh lớp 12: Các em lưu ý chỉ có 60 phút làm bài</em>
-                    <div class="text-center imgposition">
-                        <img src="/lttnpy_core/images/BANNER_THITRACNGHIEM.png" alt="[MIỄN PHÍ] Mác-Lênin: Chương Mở đầu">
-                    </div>
-                    <p></p>
-                </div>
-            </div>
+            
             <div class="panel panel-default">
-                <div class="panel-heading">Hướng dẫn làm bài</div>
+                <div class="panel-heading">COURSE: <%=infoCourse && infoCourse.name %></div>
                 <div class="panel-body">
-                    <h2>Hướng dẫn làm bài thi trắc nghiệm:</h2> 
+                    <h2>Please Select Unit:</h2> 
                     <% listUnit.forEach(unit => { %>
                     <br><a href="/unit/detail/?unitID=<%=unit._id%>"> <%= unit.name %> </a>
                     <% }) %>
@@ -68,7 +27,7 @@
 
                             <div class="zalo-share-button" data-href="" data-oaid="" data-layout="1" data-color="blue" data-customize="false"></div>
                         </li>
-                        <li><iframe id="twitter-widget-0" scrolling="no" frameborder="0" allowtransparency="true" allowfullscreen="true" class="twitter-share-button twitter-share-button-rendered twitter-tweet-button" style="position: static; visibility: visible; width: 60px; height: 20px;" title="Twitter Tweet Button" src="https://platform.twitter.com/widgets/tweet_button.06c6ee58c3810956b7509218508c7b56.vi.html#dnt=false&amp;id=twitter-widget-0&amp;lang=vi&amp;original_referer=http%3A%2F%2Flocalhost%3A3000%2Fexam%3FexamID%3D5ee5f79dfa430106f4296452&amp;size=m&amp;text=Luy%E1%BB%87n%20Thi%20Tr%E1%BA%AFc%20Nghi%E1%BB%87m%20Ph%C3%BA%20Y%C3%AAn&amp;time=1621089646741&amp;type=share&amp;url=http%3A%2F%2Flocalhost%3A3000%2Fexam%3FexamID%3D5ee5f79dfa430106f4296452"></iframe></li>
+                        
                     </ul>
                 </div>
             </div>
@@ -98,10 +57,10 @@
                                 <div class="form-group clearfix">
                                     <div class="row">
                                         <div class="col-xs-12">
-                                            <input id="commentname" type="text" name="name" value="Đạt Tô" disabled="disabled" class="form-control" placeholder="Tên của bạn">
+                                            <input id="commentname" type="text" name="name" value="Nguyễn Văn A" disabled="disabled" class="form-control" placeholder="Tên của bạn">
                                         </div>
                                         <div class="col-xs-12">
-                                            <input id="commentemail_iavim" type="text" name="email" value="todat998@gmail.com" disabled="disabled" class="form-control" placeholder="Email">
+                                            <input id="commentemail_iavim" type="text" name="email" value="a@gmail.com" disabled="disabled" class="form-control" placeholder="Email">
                                         </div>
                                     </div>
                                 </div>

@@ -8,6 +8,9 @@ const VocabularySchema = new Schema({
     //Hình 
     image: String,
 
+    //Nghe 
+    listen: String,
+
     //Tiếng anh
     english: String,
 
