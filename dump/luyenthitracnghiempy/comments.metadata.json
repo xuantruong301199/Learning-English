@@ -1,0 +1,1 @@
+{"options":{},"indexes":[{"v":{"$numberInt":"2"},"key":{"_id":{"$numberInt":"1"}},"name":"_id_","ns":"luyenthitracnghiempy.comments"}],"uuid":"2581034b8dcc4252b892722d5f13a9c2"}

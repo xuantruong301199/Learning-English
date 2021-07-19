@@ -1,0 +1,1 @@
+{"options":{},"indexes":[{"v":{"$numberInt":"2"},"key":{"_id":{"$numberInt":"1"}},"name":"_id_","ns":"fast_food.stores"},{"v":{"$numberInt":"2"},"key":{"place.coordinates":"2dsphere"},"name":"place.coordinates_2dsphere","ns":"fast_food.stores","background":true,"2dsphereIndexVersion":{"$numberInt":"3"}}],"uuid":"408e057258b045c2b3ff07fed3bd0d22"}

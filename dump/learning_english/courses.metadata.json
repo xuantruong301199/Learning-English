@@ -1,0 +1,1 @@
+{"options":{},"indexes":[{"v":{"$numberInt":"2"},"key":{"_id":{"$numberInt":"1"}},"name":"_id_","ns":"learning_english.courses"}],"uuid":"22f051a188a3450a8d8bd47b9b5176ba"}

@@ -1,0 +1,1 @@
+{"options":{},"indexes":[{"v":{"$numberInt":"2"},"key":{"_id":{"$numberInt":"1"}},"name":"_id_","ns":"webbanve.users"}],"uuid":"dc5e9010563a4df5a36a5dfd1afda66a"}
